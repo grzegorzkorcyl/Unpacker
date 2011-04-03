@@ -1,0 +1,195 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!--                                             -->
+<!-- Author: ROOT team (rootdev@hpsalo.cern.ch)  -->
+<!--                                             -->
+<!--   Date: Tue Oct 24 15:59:11 2006            -->
+<!--                                             -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>EventHdr</title>
+<link rev=made href="mailto:rootdev@root.cern.ch">
+<meta name="rating" content="General">
+<meta name="objecttype" content="Manual">
+<meta name="keywords" content="software development, oo, object oriented, unix, x11, windows, c++, html, rene brun, fons rademakers">
+<meta name="description" content="ROOT - An Object Oriented Framework For Large Scale Data Analysis.">
+</head>
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#551a8b" ALINK="#ff0000" TEXT="#000000">
+<a name="TopOfPage"></a>
+<table cellpadding="2" border="1" style="float:right;"><tr><td>#include "eventhdr_wk.h"</td></tr></table>
+<!--BEGIN-->
+<center>
+<h1>EventHdr</h1>
+<hr width=300>
+<!--SDL--><em><a href="#EventHdr:description">class description</a> - <a href="src/EventHdr.cxx.html">source file</a> - <a href="EventHdr_Tree.pdf">inheritance tree (.pdf)</a></em>
+<hr width=300>
+</center>
+<h2>class <a name="EventHdr" href="eventhdr_wk.h">EventHdr</a> : public <a href="http://root.cern.ch/root/html/TObject.html">TObject</a></h2>
+<!--INHERITANCE TREE-->
+<table><tr><td width="10%"></td><td width="70%">Inheritance Chart:</td></tr><tr><td width="10%"></td><td width="70%"><table width="100%" border="1"><tr><td>
+<table width="100%" border="0" cellpadding ="0" cellspacing="2"><tr>
+<td><table><tr>
+<td bgcolor="#f7f7f7" align="right">
+<table><tr><td>
+<center><tt><a name="TObject" href="http://root.cern.ch/root/html/TObject.html">TObject</a></tt></center>
+</td>
+</tr></table>
+</td>
+</tr></table></td>
+<td>&lt;-</td><td>
+<center><big><b><tt><a name="EventHdr" href="./EventHdr.html">EventHdr</a></tt></b></big></center>
+</td>
+<td><table><tr>
+<td></td>
+</tr></table></td>
+</tr></table>
+</td></tr></table></td></tr></table>
+<pre>
+
+<!--TAB4-->    <b>public:</b><br>
+<!--TAB6-->                      <!--TAB--><!--BOLD--><a href="#EventHdr:EventHdr">EventHdr</a><!--PLAIN-->()
+<!--TAB6-->                      <!--TAB--><!--BOLD--><a href="#EventHdr:EventHdr">EventHdr</a><!--PLAIN-->(const <a href="./HldEvent.html">HldEvent</a>&amp; HldEvt)
+<!--TAB6-->                      <!--TAB--><!--BOLD--><a href="#EventHdr:EventHdr">EventHdr</a><!--PLAIN-->(const <a href="./EventHdr.html">EventHdr</a>&amp;)
+<!--TAB6-->                      <!--TAB--><!--BOLD--><a href="#EventHdr:~EventHdr">~EventHdr</a><!--PLAIN-->()
+<!--TAB6-->       static <a href="http://root.cern.ch/root/html/TClass.html">TClass</a>* <!--TAB--><!--BOLD--><a href="#EventHdr:Class">Class</a><!--PLAIN-->()
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#EventHdr:clearAll">clearAll</a><!--PLAIN-->()
+<!--TAB6-->               <a href="ListOfTypes.html#Bool_t">Bool_t</a> <!--TAB--><!--BOLD--><a href="#EventHdr:fill">fill</a><!--PLAIN-->(const <a href="./HldEvent.html">HldEvent</a>&amp;)
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#EventHdr:getDataSize">getDataSize</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#EventHdr:getDate">getDate</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#EventHdr:getDay">getDay</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#EventHdr:getDecoding">getDecoding</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#EventHdr:getHour">getHour</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#EventHdr:getId">getId</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#EventHdr:getMinute">getMinute</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#EventHdr:getMonth">getMonth</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#EventHdr:getPad">getPad</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#EventHdr:getPaddedSize">getPaddedSize</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#EventHdr:getSecond">getSecond</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#EventHdr:getSeqNr">getSeqNr</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#EventHdr:getSize">getSize</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#EventHdr:getTime">getTime</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#EventHdr:getYear">getYear</a><!--PLAIN-->()
+<!--TAB6-->      virtual <a href="http://root.cern.ch/root/html/TClass.html">TClass</a>* <!--TAB--><!--BOLD--><a href="#EventHdr:IsA">IsA</a><!--PLAIN-->() const
+<!--TAB6-->            <a href="./EventHdr.html">EventHdr</a>&amp; <!--TAB--><!--BOLD--><a href="#EventHdr:operator=">operator=</a><!--PLAIN-->(const <a href="./EventHdr.html">EventHdr</a>&amp;)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#EventHdr:setDataSize">setDataSize</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> ds = 0)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#EventHdr:setDate">setDate</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> d = 0)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#EventHdr:setDay">setDay</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> d = 0)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#EventHdr:setDecoding">setDecoding</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> d = 0)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#EventHdr:setHour">setHour</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> h = 0)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#EventHdr:setId">setId</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> i = 0)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#EventHdr:setMinute">setMinute</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> m = 0)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#EventHdr:setMonth">setMonth</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> m = 0)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#EventHdr:setPad">setPad</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> p = 0)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#EventHdr:setPaddedSize">setPaddedSize</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> ps = 0)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#EventHdr:setSecond">setSecond</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> s = 0)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#EventHdr:setSeqNr">setSeqNr</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> se = 0)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#EventHdr:setSize">setSize</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> s = 0)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#EventHdr:setTime">setTime</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> t = 0)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#EventHdr:setYear">setYear</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> y = 0)
+<!--TAB6-->         virtual <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#EventHdr:ShowMembers">ShowMembers</a><!--PLAIN-->(<a href="http://root.cern.ch/root/html/TMemberInspector.html">TMemberInspector</a>&amp; insp, <a href="ListOfTypes.html#char">char</a>* parent)
+<!--TAB6-->         virtual <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#EventHdr:Streamer">Streamer</a><!--PLAIN-->(<a href="http://root.cern.ch/root/html/TBuffer.html">TBuffer</a>&amp; b)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#EventHdr:StreamerNVirtual">StreamerNVirtual</a><!--PLAIN-->(<a href="http://root.cern.ch/root/html/TBuffer.html">TBuffer</a>&amp; b)
+</pre>
+
+<h3><!--TAB2-->  <a name="EventHdr:Data Members">Data Members</a></h3>
+<pre>
+
+<!--TAB4-->    <b>protected:</b><br>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="EventHdr:size">size</a><!--PLAIN-->        <!--TAB--><i><a name="Title:size">size_t</a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="EventHdr:decoding">decoding</a><!--PLAIN-->    <!--TAB--><i><a name="Title:decoding"></a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="EventHdr:id">id</a><!--PLAIN-->          <!--TAB--><i><a name="Title:id"></a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="EventHdr:seqNr">seqNr</a><!--PLAIN-->       <!--TAB--><i><a name="Title:seqNr"></a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="EventHdr:date">date</a><!--PLAIN-->        <!--TAB--><i><a name="Title:date"></a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="EventHdr:time">time</a><!--PLAIN-->        <!--TAB--><i><a name="Title:time"></a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="EventHdr:year">year</a><!--PLAIN-->        <!--TAB--><i><a name="Title:year"></a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="EventHdr:month">month</a><!--PLAIN-->       <!--TAB--><i><a name="Title:month"></a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="EventHdr:day">day</a><!--PLAIN-->         <!--TAB--><i><a name="Title:day"></a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="EventHdr:hour">hour</a><!--PLAIN-->        <!--TAB--><i><a name="Title:hour"></a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="EventHdr:minute">minute</a><!--PLAIN-->      <!--TAB--><i><a name="Title:minute"></a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="EventHdr:second">second</a><!--PLAIN-->      <!--TAB--><i><a name="Title:second"></a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="EventHdr:pad">pad</a><!--PLAIN-->         <!--TAB--><i><a name="Title:pad"></a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="EventHdr:dataSize">dataSize</a><!--PLAIN-->    <!--TAB--><i><a name="Title:dataSize"></a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="EventHdr:paddedSize">paddedSize</a><!--PLAIN-->  <!--TAB--><i><a name="Title:paddedSize"></a></i>
+</pre>
+<!--END-->
+<hr>
+<!--DESCRIPTION--><h2><a name="EventHdr:description">Class Description</a></h2>
+<pre>   <a href="./EventHdr.html">EventHdr</a>
+
+
+
+
+</pre><hr>
+<!--FUNCTION--><a href="ListOfTypes.html#void">void</a> <a name="EventHdr:clearAll" href="src/EventHdr.cxx.html#EventHdr:clearAll">clearAll</a>()
+//
+<br>
+<hr>
+<!--FUNCTION--><a href="ListOfTypes.html#Bool_t">Bool_t</a> <a name="EventHdr:fill" href="src/EventHdr.cxx.html#EventHdr:fill">fill</a>(const <a href="./HldEvent.html">HldEvent</a>&amp; HldEvt)
+//what about some error's check
+<br>
+<hr>
+<!--FUNCTION--><a href="ListOfTypes.html#void">void</a> <a name="EventHdr:Streamer" href="src/EventHdr.cxx.html#EventHdr:Streamer">Streamer</a>(<a href="http://root.cern.ch/root/html/TBuffer.html">TBuffer</a> &amp;R__b)
+<br>
+<pre> Stream an object of class <a href="./EventHdr.html">EventHdr</a>.
+</pre><br><br><br>
+<h3>Inline Functions</h3>
+<hr>
+<pre>
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="EventHdr:~EventHdr" href="eventhdr_wk.h">~EventHdr</a>()
+<!--INLINE FUNCTION--><!--TAB6-->           <a href="./EventHdr.html">EventHdr</a> <a name="EventHdr:EventHdr" href="eventhdr_wk.h">EventHdr</a>()
+<!--INLINE FUNCTION--><!--TAB6-->           <a href="./EventHdr.html">EventHdr</a> <a name="EventHdr:EventHdr" href="eventhdr_wk.h">EventHdr</a>(const <a href="./HldEvent.html">HldEvent</a>&amp; HldEvt)
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="EventHdr:getSize" href="eventhdr_wk.h">getSize</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="EventHdr:getDecoding" href="eventhdr_wk.h">getDecoding</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="EventHdr:getId" href="eventhdr_wk.h">getId</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="EventHdr:getSeqNr" href="eventhdr_wk.h">getSeqNr</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="EventHdr:getDate" href="eventhdr_wk.h">getDate</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="EventHdr:getTime" href="eventhdr_wk.h">getTime</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="EventHdr:getYear" href="eventhdr_wk.h">getYear</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="EventHdr:getMonth" href="eventhdr_wk.h">getMonth</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="EventHdr:getDay" href="eventhdr_wk.h">getDay</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="EventHdr:getHour" href="eventhdr_wk.h">getHour</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="EventHdr:getMinute" href="eventhdr_wk.h">getMinute</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="EventHdr:getSecond" href="eventhdr_wk.h">getSecond</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="EventHdr:getPad" href="eventhdr_wk.h">getPad</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="EventHdr:getDataSize" href="eventhdr_wk.h">getDataSize</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="EventHdr:getPaddedSize" href="eventhdr_wk.h">getPaddedSize</a>()
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="EventHdr:setSize" href="eventhdr_wk.h">setSize</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> s = 0)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="EventHdr:setDecoding" href="eventhdr_wk.h">setDecoding</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> d = 0)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="EventHdr:setId" href="eventhdr_wk.h">setId</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> i = 0)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="EventHdr:setSeqNr" href="eventhdr_wk.h">setSeqNr</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> se = 0)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="EventHdr:setDate" href="eventhdr_wk.h">setDate</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> d = 0)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="EventHdr:setTime" href="eventhdr_wk.h">setTime</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> t = 0)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="EventHdr:setYear" href="eventhdr_wk.h">setYear</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> y = 0)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="EventHdr:setMonth" href="eventhdr_wk.h">setMonth</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> m = 0)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="EventHdr:setDay" href="eventhdr_wk.h">setDay</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> d = 0)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="EventHdr:setHour" href="eventhdr_wk.h">setHour</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> h = 0)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="EventHdr:setMinute" href="eventhdr_wk.h">setMinute</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> m = 0)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="EventHdr:setSecond" href="eventhdr_wk.h">setSecond</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> s = 0)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="EventHdr:setPad" href="eventhdr_wk.h">setPad</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> p = 0)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="EventHdr:setDataSize" href="eventhdr_wk.h">setDataSize</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> ds = 0)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="EventHdr:setPaddedSize" href="eventhdr_wk.h">setPaddedSize</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> ps = 0)
+<!--INLINE FUNCTION--><!--TAB6-->            <a href="http://root.cern.ch/root/html/TClass.html">TClass</a>* <a name="EventHdr:Class" href="eventhdr_wk.h">Class</a>()
+<!--INLINE FUNCTION--><!--TAB6-->            <a href="http://root.cern.ch/root/html/TClass.html">TClass</a>* <a name="EventHdr:IsA" href="eventhdr_wk.h">IsA</a>() const
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="EventHdr:ShowMembers" href="eventhdr_wk.h">ShowMembers</a>(<a href="http://root.cern.ch/root/html/TMemberInspector.html">TMemberInspector</a>&amp; insp, <a href="ListOfTypes.html#char">char</a>* parent)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="EventHdr:StreamerNVirtual" href="eventhdr_wk.h">StreamerNVirtual</a>(<a href="http://root.cern.ch/root/html/TBuffer.html">TBuffer</a>&amp; b)
+<!--INLINE FUNCTION--><!--TAB6-->           <a href="./EventHdr.html">EventHdr</a> <a name="EventHdr:EventHdr" href="eventhdr_wk.h">EventHdr</a>(const <a href="./EventHdr.html">EventHdr</a>&amp;)
+<!--INLINE FUNCTION--><!--TAB6-->          <a href="./EventHdr.html">EventHdr</a>&amp; <a name="EventHdr:operator=" href="eventhdr_wk.h">operator=</a>(const <a href="./EventHdr.html">EventHdr</a>&amp;)
+</pre>
+
+<hr><br>
+<!--SIGNATURE-->
+<em>Author: <a href="wojciech.krzemien@if.uj.edu.pl">Wojciech Krzemien</a> 17.10.06</em><br>
+<em>Last update: Tue Oct 24 15:59:12 2006</em><br>
+<br>
+<hr>
+<center>
+<address>
+<a href="http://root.cern.ch/root/Welcome.html">ROOT page</a> - <a href="ClassIndex.html">Class index</a> - <a href="ClassHierarchy.html">Class Hierarchy</a> - <a href="#TopOfPage">Top of the page</a><br>
+</address>
+</center>
+<hr>
+<address>
+This page has been automatically generated. If you have any comments or suggestions about the page layout send a mail to <a href="mailto:rootdev@root.cern.ch">ROOT support</a>, or contact <a href="mailto:rootdev@root.cern.ch">the developers</a> with any questions or problems regarding ROOT.
+</address>
+</body>
+</html>

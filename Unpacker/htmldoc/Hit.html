@@ -1,0 +1,207 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!--                                             -->
+<!-- Author: ROOT team (rootdev@hpsalo.cern.ch)  -->
+<!--                                             -->
+<!--   Date: Tue Oct 24 15:59:10 2006            -->
+<!--                                             -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Hit</title>
+<link rev=made href="mailto:rootdev@root.cern.ch">
+<meta name="rating" content="General">
+<meta name="objecttype" content="Manual">
+<meta name="keywords" content="software development, oo, object oriented, unix, x11, windows, c++, html, rene brun, fons rademakers">
+<meta name="description" content="ROOT - An Object Oriented Framework For Large Scale Data Analysis.">
+</head>
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#551a8b" ALINK="#ff0000" TEXT="#000000">
+<a name="TopOfPage"></a>
+<table cellpadding="2" border="1" style="float:right;"><tr><td>#include "hit_wk.h"</td></tr></table>
+<!--BEGIN-->
+<center>
+<h1>Hit</h1>
+<hr width=300>
+<!--SDL--><em><a href="#Hit:description">class description</a> - <a href="src/Hit.cxx.html">source file</a> - <a href="Hit_Tree.pdf">inheritance tree (.pdf)</a></em>
+<hr width=300>
+</center>
+<h2>class <a name="Hit" href="hit_wk.h">Hit</a> : public <a href="http://root.cern.ch/root/html/TObject.html">TObject</a></h2>
+<!--INHERITANCE TREE-->
+<table><tr><td width="10%"></td><td width="70%">Inheritance Chart:</td></tr><tr><td width="10%"></td><td width="70%"><table width="100%" border="1"><tr><td>
+<table width="100%" border="0" cellpadding ="0" cellspacing="2"><tr>
+<td><table><tr>
+<td bgcolor="#f7f7f7" align="right">
+<table><tr><td>
+<center><tt><a name="TObject" href="http://root.cern.ch/root/html/TObject.html">TObject</a></tt></center>
+</td>
+</tr></table>
+</td>
+</tr></table></td>
+<td>&lt;-</td><td>
+<center><big><b><tt><a name="Hit" href="./Hit.html">Hit</a></tt></b></big></center>
+</td>
+<td><table><tr>
+<td></td>
+</tr></table></td>
+</tr></table>
+</td></tr></table></td></tr></table>
+<pre>
+
+<!--TAB4-->    <b>public:</b><br>
+<!--TAB6-->                      <!--TAB--><!--BOLD--><a href="#Hit:Hit">Hit</a><!--PLAIN-->()
+<!--TAB6-->                      <!--TAB--><!--BOLD--><a href="#Hit:Hit">Hit</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> ch, <a href="ListOfTypes.html#Int_t">Int_t</a> tdc)
+<!--TAB6-->                      <!--TAB--><!--BOLD--><a href="#Hit:Hit">Hit</a><!--PLAIN-->(const <a href="./Hit.html">Hit</a>&amp;)
+<!--TAB6-->                      <!--TAB--><!--BOLD--><a href="#Hit:~Hit">~Hit</a><!--PLAIN-->()
+<!--TAB6-->       static <a href="http://root.cern.ch/root/html/TClass.html">TClass</a>* <!--TAB--><!--BOLD--><a href="#Hit:Class">Class</a><!--PLAIN-->()
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Hit:clear">clear</a><!--PLAIN-->()
+<!--TAB6-->               <a href="ListOfTypes.html#Bool_t">Bool_t</a> <!--TAB--><!--BOLD--><a href="#Hit:fill_lead">fill_lead</a><!--PLAIN-->(const <a href="ListOfTypes.html#Int_t">Int_t</a> time)
+<!--TAB6-->               <a href="ListOfTypes.html#Bool_t">Bool_t</a> <!--TAB--><!--BOLD--><a href="#Hit:fill_trail">fill_trail</a><!--PLAIN-->(const <a href="ListOfTypes.html#Int_t">Int_t</a> time)
+<!--TAB6-->               <a href="ListOfTypes.html#Bool_t">Bool_t</a> <!--TAB--><!--BOLD--><a href="#Hit:fillTimeAndWidth">fillTimeAndWidth</a><!--PLAIN-->(const <a href="ListOfTypes.html#Int_t">Int_t</a>, const <a href="ListOfTypes.html#Int_t">Int_t</a>)
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Hit:getChannel">getChannel</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Hit:getNHits">getNHits</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Hit:getTDC">getTDC</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Hit:getTime">getTime</a><!--PLAIN-->(const <a href="ListOfTypes.html#Int_t">Int_t</a> n) const
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Hit:getTime1">getTime1</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Hit:getTime2">getTime2</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Hit:getTime3">getTime3</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Hit:getTime4">getTime4</a><!--PLAIN-->()
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Hit:getTimeAndWidth">getTimeAndWidth</a><!--PLAIN-->(const <a href="ListOfTypes.html#Int_t">Int_t</a>, <a href="ListOfTypes.html#Int_t">Int_t</a>&amp;, <a href="ListOfTypes.html#Int_t">Int_t</a>&amp;)
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Hit:getWidth">getWidth</a><!--PLAIN-->(const <a href="ListOfTypes.html#Int_t">Int_t</a> n) const
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Hit:getWidth1">getWidth1</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Hit:getWidth2">getWidth2</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Hit:getWidth3">getWidth3</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Hit:getWidth4">getWidth4</a><!--PLAIN-->()
+<!--TAB6-->      virtual <a href="http://root.cern.ch/root/html/TClass.html">TClass</a>* <!--TAB--><!--BOLD--><a href="#Hit:IsA">IsA</a><!--PLAIN-->() const
+<!--TAB6-->                 <a href="./Hit.html">Hit</a>&amp; <!--TAB--><!--BOLD--><a href="#Hit:operator=">operator=</a><!--PLAIN-->(const <a href="./Hit.html">Hit</a>&amp;)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Hit:setAddress">setAddress</a><!--PLAIN-->(const <a href="ListOfTypes.html#Int_t">Int_t</a> m, const <a href="ListOfTypes.html#Int_t">Int_t</a> f)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Hit:setChannel">setChannel</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> c)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Hit:setModule">setModule</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> m)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Hit:setMult">setMult</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> mu)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Hit:setNHits">setNHits</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> h)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Hit:setTDC">setTDC</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> t)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Hit:setTime1">setTime1</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> t)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Hit:setTime2">setTime2</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> t)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Hit:setTime3">setTime3</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> t)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Hit:setTime4">setTime4</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> t)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Hit:setWidth1">setWidth1</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> w)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Hit:setWidth2">setWidth2</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> w)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Hit:setWidth3">setWidth3</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> w)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Hit:setWidth4">setWidth4</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> w)
+<!--TAB6-->         virtual <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Hit:ShowMembers">ShowMembers</a><!--PLAIN-->(<a href="http://root.cern.ch/root/html/TMemberInspector.html">TMemberInspector</a>&amp; insp, <a href="ListOfTypes.html#char">char</a>* parent)
+<!--TAB6-->         virtual <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Hit:Streamer">Streamer</a><!--PLAIN-->(<a href="http://root.cern.ch/root/html/TBuffer.html">TBuffer</a>&amp; b)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Hit:StreamerNVirtual">StreamerNVirtual</a><!--PLAIN-->(<a href="http://root.cern.ch/root/html/TBuffer.html">TBuffer</a>&amp; b)
+</pre>
+
+<h3><!--TAB2-->  <a name="Hit:Data Members">Data Members</a></h3>
+<pre>
+
+<!--TAB4-->    <b>protected:</b><br>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="Hit:channel">channel</a><!--PLAIN-->  <!--TAB--><i><a name="Title:channel">channel number</a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="Hit:TDC">TDC</a><!--PLAIN-->      <!--TAB--><i><a name="Title:TDC">TDC number from 0-3</a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="Hit:nHits">nHits</a><!--PLAIN-->    <!--TAB--><i><a name="Title:nHits">number of hits</a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="Hit:time1">time1</a><!--PLAIN-->    <!--TAB--><i><a name="Title:time1">tdc time of 1st hit</a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="Hit:width1">width1</a><!--PLAIN-->   <!--TAB--><i><a name="Title:width1">width of 1st hit</a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="Hit:time2">time2</a><!--PLAIN-->    <!--TAB--><i><a name="Title:time2">tdc time of 2nd hit</a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="Hit:width2">width2</a><!--PLAIN-->   <!--TAB--><i><a name="Title:width2">width of 2nd hit</a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="Hit:time3">time3</a><!--PLAIN-->    <!--TAB--><i><a name="Title:time3">tdc time of 3rd hit</a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="Hit:width3">width3</a><!--PLAIN-->   <!--TAB--><i><a name="Title:width3">width of 3rd hit</a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="Hit:time4">time4</a><!--PLAIN-->    <!--TAB--><i><a name="Title:time4">tdc time of 4th hit</a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="Hit:width4">width4</a><!--PLAIN-->   <!--TAB--><i><a name="Title:width4">width of 4th hit</a></i>
+</pre>
+<!--END-->
+<hr>
+<!--DESCRIPTION--><h2><a name="Hit:description">Class Description</a></h2>
+<pre>   <a href="./Hit.html">Hit</a>
+
+
+
+
+</pre><hr>
+<!--FUNCTION--><a href="ListOfTypes.html#void">void</a> <a name="Hit:clear" href="src/Hit.cxx.html#Hit:clear">clear</a>()
+//
+<br>
+<hr>
+<!--FUNCTION--><a href="ListOfTypes.html#void">void</a> <a name="Hit:Streamer" href="src/Hit.cxx.html#Hit:Streamer">Streamer</a>(<a href="http://root.cern.ch/root/html/TBuffer.html">TBuffer</a> &amp;R__b)
+<br>
+<pre> Stream an object of class <a href="./Hit.html">Hit</a>.
+</pre><hr>
+<!--FUNCTION--><a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Hit:getTime" href="src/Hit.cxx.html#Hit:getTime">getTime</a>(const <a href="ListOfTypes.html#Int_t">Int_t</a> n) const <br>
+<pre> Returns the time of the nth hit (1&lt;=n&lt;=4)
+</pre><hr>
+<!--FUNCTION--><a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Hit:getWidth" href="src/Hit.cxx.html#Hit:getWidth">getWidth</a>(const <a href="ListOfTypes.html#Int_t">Int_t</a> n) const <br>
+<pre> Returns the width of the nth hit (1&lt;=n&lt;=4)
+</pre><hr>
+<!--FUNCTION--><a href="ListOfTypes.html#void">void</a> <a name="Hit:getTimeAndWidth" href="src/Hit.cxx.html#Hit:getTimeAndWidth">getTimeAndWidth</a>(const <a href="ListOfTypes.html#Int_t">Int_t</a> n, <a href="ListOfTypes.html#Int_t">Int_t</a>&amp; time, <a href="ListOfTypes.html#Int_t">Int_t</a>&amp; width ) <br>
+<pre> Returns the time and width of the nth hit (1&lt;=n&lt;=4)
+</pre><hr>
+<!--FUNCTION--><a href="ListOfTypes.html#Bool_t">Bool_t</a> <a name="Hit:fillTimeAndWidth" href="src/Hit.cxx.html#Hit:fillTimeAndWidth">fillTimeAndWidth</a>(const <a href="ListOfTypes.html#Int_t">Int_t</a> time,const <a href="ListOfTypes.html#Int_t">Int_t</a> width) <br>
+<pre> Stores the given time and width in the next data element time* and width*
+ and sets the multiplicity.
+ Return kFALSE if 4 hits are already stored.
+</pre><hr>
+<!--FUNCTION--><a href="ListOfTypes.html#Bool_t">Bool_t</a> <a name="Hit:fill_lead" href="src/Hit.cxx.html#Hit:fill_lead">fill_lead</a>(const <a href="ListOfTypes.html#Int_t">Int_t</a> time) <br>
+<pre> Stores the given time in the next data element time*
+ and sets the multiplicity.
+ Return kFALSE if 4 hits are already stored.
+</pre><hr>
+<!--FUNCTION--><a href="ListOfTypes.html#Bool_t">Bool_t</a> <a name="Hit:fill_trail" href="src/Hit.cxx.html#Hit:fill_trail">fill_trail</a>(const <a href="ListOfTypes.html#Int_t">Int_t</a> time) <br>
+<pre> Calculates the time between trailing and LAST(!) leading hit.
+ No other check if its really the right one,
+ i am depending on the <a href="./Hit.html#Hit:TDC">TDC</a> to deliver the right order
+ Return kFALSE if no leading yet or more than 4 Hits
+</pre><br><br><br>
+<h3>Inline Functions</h3>
+<hr>
+<pre>
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Hit:~Hit" href="hit_wk.h">~Hit</a>()
+<!--INLINE FUNCTION--><!--TAB6-->                <a href="./Hit.html">Hit</a> <a name="Hit:Hit" href="hit_wk.h">Hit</a>()
+<!--INLINE FUNCTION--><!--TAB6-->                <a href="./Hit.html">Hit</a> <a name="Hit:Hit" href="hit_wk.h">Hit</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> ch, <a href="ListOfTypes.html#Int_t">Int_t</a> tdc)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Hit:setChannel" href="hit_wk.h">setChannel</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> c)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Hit:setTDC" href="hit_wk.h">setTDC</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> t)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Hit:setNHits" href="hit_wk.h">setNHits</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> h)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Hit:setTime1" href="hit_wk.h">setTime1</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> t)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Hit:setWidth1" href="hit_wk.h">setWidth1</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> w)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Hit:setTime2" href="hit_wk.h">setTime2</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> t)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Hit:setWidth2" href="hit_wk.h">setWidth2</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> w)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Hit:setTime3" href="hit_wk.h">setTime3</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> t)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Hit:setWidth3" href="hit_wk.h">setWidth3</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> w)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Hit:setTime4" href="hit_wk.h">setTime4</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> t)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Hit:setWidth4" href="hit_wk.h">setWidth4</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> w)
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Hit:getChannel" href="hit_wk.h">getChannel</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Hit:getTDC" href="hit_wk.h">getTDC</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Hit:getNHits" href="hit_wk.h">getNHits</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Hit:getTime1" href="hit_wk.h">getTime1</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Hit:getWidth1" href="hit_wk.h">getWidth1</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Hit:getTime2" href="hit_wk.h">getTime2</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Hit:getWidth2" href="hit_wk.h">getWidth2</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Hit:getTime3" href="hit_wk.h">getTime3</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Hit:getWidth3" href="hit_wk.h">getWidth3</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Hit:getTime4" href="hit_wk.h">getTime4</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Hit:getWidth4" href="hit_wk.h">getWidth4</a>()
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Hit:setModule" href="hit_wk.h">setModule</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> m)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Hit:setMult" href="hit_wk.h">setMult</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> mu)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Hit:setAddress" href="hit_wk.h">setAddress</a>(const <a href="ListOfTypes.html#Int_t">Int_t</a> m, const <a href="ListOfTypes.html#Int_t">Int_t</a> f)
+<!--INLINE FUNCTION--><!--TAB6-->            <a href="http://root.cern.ch/root/html/TClass.html">TClass</a>* <a name="Hit:Class" href="hit_wk.h">Class</a>()
+<!--INLINE FUNCTION--><!--TAB6-->            <a href="http://root.cern.ch/root/html/TClass.html">TClass</a>* <a name="Hit:IsA" href="hit_wk.h">IsA</a>() const
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Hit:ShowMembers" href="hit_wk.h">ShowMembers</a>(<a href="http://root.cern.ch/root/html/TMemberInspector.html">TMemberInspector</a>&amp; insp, <a href="ListOfTypes.html#char">char</a>* parent)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Hit:StreamerNVirtual" href="hit_wk.h">StreamerNVirtual</a>(<a href="http://root.cern.ch/root/html/TBuffer.html">TBuffer</a>&amp; b)
+<!--INLINE FUNCTION--><!--TAB6-->                <a href="./Hit.html">Hit</a> <a name="Hit:Hit" href="hit_wk.h">Hit</a>(const <a href="./Hit.html">Hit</a>&amp;)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="./Hit.html">Hit</a>&amp; <a name="Hit:operator=" href="hit_wk.h">operator=</a>(const <a href="./Hit.html">Hit</a>&amp;)
+</pre>
+
+<hr><br>
+<!--SIGNATURE-->
+<em>Author: <a href="wojciech.krzemien@if.uj.edu.pl">Wojciech Krzemien</a> 12.10.06</em><br>
+<em>Last update: Tue Oct 24 15:59:11 2006</em><br>
+<br>
+<hr>
+<center>
+<address>
+<a href="http://root.cern.ch/root/Welcome.html">ROOT page</a> - <a href="ClassIndex.html">Class index</a> - <a href="ClassHierarchy.html">Class Hierarchy</a> - <a href="#TopOfPage">Top of the page</a><br>
+</address>
+</center>
+<hr>
+<address>
+This page has been automatically generated. If you have any comments or suggestions about the page layout send a mail to <a href="mailto:rootdev@root.cern.ch">ROOT support</a>, or contact <a href="mailto:rootdev@root.cern.ch">the developers</a> with any questions or problems regarding ROOT.
+</address>
+</body>
+</html>

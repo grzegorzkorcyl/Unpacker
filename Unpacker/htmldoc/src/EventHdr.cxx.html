@@ -1,0 +1,148 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!--                                             -->
+<!-- Author: ROOT team (rootdev@hpsalo.cern.ch)  -->
+<!--                                             -->
+<!--   Date: Tue Oct 24 15:59:12 2006            -->
+<!--                                             -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>EventHdr - source file</title>
+<link rev=made href="mailto:rootdev@root.cern.ch">
+<meta name="rating" content="General">
+<meta name="objecttype" content="Manual">
+<meta name="keywords" content="software development, oo, object oriented, unix, x11, windows, c++, html, rene brun, fons rademakers">
+<meta name="description" content="ROOT - An Object Oriented Framework For Large Scale Data Analysis.">
+</head>
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#551a8b" ALINK="#ff0000" TEXT="#000000">
+<a name="TopOfPage"></a>
+<pre>
+<b>// File: eventhdr_wk.cc</b>
+<b>//</b>
+<b>// Author: Wojciech Krzemien &lt;wojciech.krzemien@if.uj.edu.pl&gt; 17.10.06</b>
+<b>// Modified:</b>
+
+#include "<a href="../eventhdr_wk.h">eventhdr_wk.h</a>"
+#include "<a href="../hldevent_wk.h">hldevent_wk.h</a>"
+
+<b>//______________________________________________________________________________</b>
+<b>//   <a href=".././EventHdr.html">EventHdr</a>  </b>
+<b>//</b>
+<b>//</b>
+<b>//</b>
+<b>////////////////////////////////////////////////////////////////////////////////</b>
+
+using namespace std;
+
+ClassImp(<a href=".././EventHdr.html">EventHdr</a>)
+
+
+<b>//______________________________________________________________________________</b>
+<a name="EventHdr:clearAll"> </a><a href="../ListOfTypes.html#void">void</a> <a href=".././EventHdr.html#EventHdr:clearAll">EventHdr::clearAll</a>()
+//
+{	
+  <a href=".././EventHdr.html#EventHdr:size">size</a>=0;
+  <a href=".././EventHdr.html#EventHdr:decoding">decoding</a>=0;
+  <a href=".././EventHdr.html#EventHdr:id">id</a>=0;
+  <a href=".././EventHdr.html#EventHdr:seqNr">seqNr</a>=0;
+  <a href=".././EventHdr.html#EventHdr:date">date</a>=0;
+  <a href=".././EventHdr.html#EventHdr:time">time</a>=0;
+  <a href=".././EventHdr.html#EventHdr:year">year</a>=0;
+  <a href=".././EventHdr.html#EventHdr:month">month</a>=0;
+  <a href=".././EventHdr.html#EventHdr:day">day</a>=0;
+  <a href=".././EventHdr.html#EventHdr:hour">hour</a>=0;
+  <a href=".././EventHdr.html#EventHdr:minute">minute</a>=0;
+  <a href=".././EventHdr.html#EventHdr:second">second</a>=0;
+<b> //wk! read in README: runNr=0;</b>
+  <a href=".././EventHdr.html#EventHdr:pad">pad</a>=0;
+  <a href=".././EventHdr.html#EventHdr:dataSize">dataSize</a>=0;
+  <a href=".././EventHdr.html#EventHdr:paddedSize">paddedSize</a>=0;
+
+}
+
+<b>//______________________________________________________________________________</b>
+<a name="EventHdr:fill"> </a><a href="../ListOfTypes.html#Bool_t">Bool_t</a> <a href=".././EventHdr.html#EventHdr:fill">EventHdr::fill</a>(const <a href=".././HldEvent.html">HldEvent</a>&amp; HldEvt)
+//what about some error's check
+{
+
+ <a href="#EventHdr:setSize">setSize</a>(HldEvt.<a href="#EventHdr:getSize">getSize</a>());
+ <a href="#EventHdr:setDecoding">setDecoding</a>(HldEvt.<a href="#EventHdr:getDecoding">getDecoding</a>());
+ <a href="#EventHdr:setId">setId</a>(HldEvt.<a href="#EventHdr:getId">getId</a>()); 
+ <a href="#EventHdr:setSeqNr">setSeqNr</a>(HldEvt.<a href="#EventHdr:getSeqNr">getSeqNr</a>());
+ <a href="#EventHdr:setDate">setDate</a>(HldEvt.<a href="#EventHdr:getDate">getDate</a>());
+ <a href="#EventHdr:setTime">setTime</a>(HldEvt.<a href="#EventHdr:getTime">getTime</a>());
+ <a href="#EventHdr:setYear">setYear</a>(HldEvt.<a href="#EventHdr:getYear">getYear</a>());
+ <a href="#EventHdr:setMonth">setMonth</a>(HldEvt.<a href="#EventHdr:getMonth">getMonth</a>());
+ <a href="#EventHdr:setDay">setDay</a>(HldEvt.<a href="#EventHdr:getDay">getDay</a>());
+ <a href="#EventHdr:setHour">setHour</a>(HldEvt.<a href="#EventHdr:getHour">getHour</a>());
+ <a href="#EventHdr:setMinute">setMinute</a>(HldEvt.<a href="#EventHdr:getMinute">getMinute</a>());
+ <a href="#EventHdr:setSecond">setSecond</a>(HldEvt.<a href="#EventHdr:getSecond">getSecond</a>());
+<b> //wk! read in README:setRunNr(static_cast&lt;<a href="../ListOfTypes.html#Int_t">Int_t</a>&gt; (HldEvt.getRunNr())); </b>
+ <a href="#EventHdr:setPad">setPad</a>(HldEvt.<a href="#EventHdr:getPad">getPad</a>());
+ <a href="#EventHdr:setDataSize">setDataSize</a>(HldEvt.<a href="#EventHdr:getDataSize">getDataSize</a>());
+ <a href="#EventHdr:setPaddedSize">setPaddedSize</a>(HldEvt.<a href="#EventHdr:getPaddedSize">getPaddedSize</a>());
+ 
+ return kTRUE;
+}
+/*
+<b>//______________________________________________________________________________</b>
+<a name="EventHdr:Streamer"> </a><a href="../ListOfTypes.html#void">void</a> <a href=".././EventHdr.html#EventHdr:Streamer">EventHdr::Streamer</a>(<a href="http://root.cern.ch/root/html/TBuffer.html">TBuffer</a> &amp;R__b)
+{
+<b>   // Stream an object of class <a href=".././EventHdr.html">EventHdr</a>.</b>
+
+   <a href="../ListOfTypes.html#UInt_t">UInt_t</a> R__s, R__c;
+   if (R__b.IsReading()) {
+      <a href="../ListOfTypes.html#Version_t">Version_t</a> R__v = R__b.ReadVersion(&amp;R__s, &amp;R__c); if (R__v) { }
+      R__b &gt;&gt; <a href=".././EventHdr.html#EventHdr:size">size</a>;
+      R__b &gt;&gt; <a href=".././EventHdr.html#EventHdr:decoding">decoding</a>;
+      R__b &gt;&gt; <a href=".././EventHdr.html#EventHdr:id">id</a>;
+      R__b &gt;&gt; <a href=".././EventHdr.html#EventHdr:seqNr">seqNr</a>;
+      R__b &gt;&gt; <a href=".././EventHdr.html#EventHdr:date">date</a>;
+      R__b &gt;&gt; <a href=".././EventHdr.html#EventHdr:time">time</a>;
+      R__b &gt;&gt; <a href=".././EventHdr.html#EventHdr:year">year</a>;
+      R__b &gt;&gt; <a href=".././EventHdr.html#EventHdr:month">month</a>;
+      R__b &gt;&gt; <a href=".././EventHdr.html#EventHdr:day">day</a>;
+      R__b &gt;&gt; <a href=".././EventHdr.html#EventHdr:hour">hour</a>;
+      R__b &gt;&gt; <a href=".././EventHdr.html#EventHdr:minute">minute</a>;
+      R__b &gt;&gt; <a href=".././EventHdr.html#EventHdr:second">second</a>;
+      R__b &gt;&gt; <a href=".././EventHdr.html#EventHdr:pad">pad</a>;
+      R__b &gt;&gt; <a href=".././EventHdr.html#EventHdr:dataSize">dataSize</a>;
+      R__b &gt;&gt; <a href=".././EventHdr.html#EventHdr:paddedSize">paddedSize</a>;
+      R__b.CheckByteCount(R__s, R__c, <a href=".././EventHdr.html#EventHdr:IsA">EventHdr::IsA</a>());
+   } else {
+      R__c = R__b.WriteVersion(<a href=".././EventHdr.html#EventHdr:IsA">EventHdr::IsA</a>(), kTRUE);
+      R__b &lt;&lt; <a href=".././EventHdr.html#EventHdr:size">size</a>;
+      R__b &lt;&lt; <a href=".././EventHdr.html#EventHdr:decoding">decoding</a>;
+      R__b &lt;&lt; <a href=".././EventHdr.html#EventHdr:id">id</a>;
+      R__b &lt;&lt; <a href=".././EventHdr.html#EventHdr:seqNr">seqNr</a>;
+      R__b &lt;&lt; <a href=".././EventHdr.html#EventHdr:date">date</a>;
+      R__b &lt;&lt; <a href=".././EventHdr.html#EventHdr:time">time</a>;
+      R__b &lt;&lt; <a href=".././EventHdr.html#EventHdr:year">year</a>;
+      R__b &lt;&lt; <a href=".././EventHdr.html#EventHdr:month">month</a>;
+      R__b &lt;&lt; <a href=".././EventHdr.html#EventHdr:day">day</a>;
+      R__b &lt;&lt; <a href=".././EventHdr.html#EventHdr:hour">hour</a>;
+      R__b &lt;&lt; <a href=".././EventHdr.html#EventHdr:minute">minute</a>;
+      R__b &lt;&lt; <a href=".././EventHdr.html#EventHdr:second">second</a>;
+      R__b &lt;&lt; <a href=".././EventHdr.html#EventHdr:pad">pad</a>;
+      R__b &lt;&lt; <a href=".././EventHdr.html#EventHdr:dataSize">dataSize</a>;
+      R__b &lt;&lt; <a href=".././EventHdr.html#EventHdr:paddedSize">paddedSize</a>;
+      R__b.SetByteCount(R__c, kTRUE);
+   }
+}
+*/
+</pre>
+
+<!--SIGNATURE-->
+<br>
+<hr>
+<center>
+<address>
+<a href="http://root.cern.ch/root/Welcome.html">ROOT page</a> - <a href="../ClassIndex.html">Class index</a> - <a href="../ClassHierarchy.html">Class Hierarchy</a> - <a href="#TopOfPage">Top of the page</a><br>
+</address>
+</center>
+<hr>
+<address>
+This page has been automatically generated. If you have any comments or suggestions about the page layout send a mail to <a href="mailto:rootdev@root.cern.ch">ROOT support</a>, or contact <a href="mailto:rootdev@root.cern.ch">the developers</a> with any questions or problems regarding ROOT.
+</address>
+</body>
+</html>

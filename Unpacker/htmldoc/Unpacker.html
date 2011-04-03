@@ -1,0 +1,125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!--                                             -->
+<!-- Author: ROOT team (rootdev@hpsalo.cern.ch)  -->
+<!--                                             -->
+<!--   Date: Tue Oct 24 15:59:12 2006            -->
+<!--                                             -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Unpacker</title>
+<link rev=made href="mailto:rootdev@root.cern.ch">
+<meta name="rating" content="General">
+<meta name="objecttype" content="Manual">
+<meta name="keywords" content="software development, oo, object oriented, unix, x11, windows, c++, html, rene brun, fons rademakers">
+<meta name="description" content="ROOT - An Object Oriented Framework For Large Scale Data Analysis.">
+</head>
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#551a8b" ALINK="#ff0000" TEXT="#000000">
+<a name="TopOfPage"></a>
+<table cellpadding="2" border="1" style="float:right;"><tr><td>#include "unpacker_wk.h"</td></tr></table>
+<!--BEGIN-->
+<center>
+<h1>Unpacker</h1>
+<hr width=300>
+<!--SDL--><em><a href="#Unpacker:description">class description</a> - <a href="src/Unpacker.cxx.html">source file</a> - <a href="Unpacker_Tree.pdf">inheritance tree (.pdf)</a></em>
+<hr width=300>
+</center>
+<h2>class <a name="Unpacker" href="unpacker_wk.h">Unpacker</a> : public <a href="http://root.cern.ch/root/html/TObject.html">TObject</a></h2>
+<!--INHERITANCE TREE-->
+<table><tr><td width="10%"></td><td width="70%">Inheritance Chart:</td></tr><tr><td width="10%"></td><td width="70%"><table width="100%" border="1"><tr><td>
+<table width="100%" border="0" cellpadding ="0" cellspacing="2"><tr>
+<td><table><tr>
+<td bgcolor="#f7f7f7" align="right">
+<table><tr><td>
+<center><tt><a name="TObject" href="http://root.cern.ch/root/html/TObject.html">TObject</a></tt></center>
+</td>
+</tr></table>
+</td>
+</tr></table></td>
+<td>&lt;-</td><td>
+<center><big><b><tt><a name="Unpacker" href="./Unpacker.html">Unpacker</a></tt></b></big></center>
+</td>
+<td><table><tr>
+<td></td>
+</tr></table></td>
+</tr></table>
+</td></tr></table></td></tr></table>
+<pre>
+
+<!--TAB4-->    <b>public:</b><br>
+<!--TAB6-->                      <!--TAB--><!--BOLD--><a href="#Unpacker:Unpacker">Unpacker</a><!--PLAIN-->()
+<!--TAB6-->                      <!--TAB--><!--BOLD--><a href="#Unpacker:Unpacker">Unpacker</a><!--PLAIN-->(const <a href="ListOfTypes.html#char">char</a>* name, <a href="ListOfTypes.html#Int_t">Int_t</a> subEvtId)
+<!--TAB6-->                      <!--TAB--><!--BOLD--><a href="#Unpacker:Unpacker">Unpacker</a><!--PLAIN-->(const <a href="./Unpacker.html">Unpacker</a>&amp;)
+<!--TAB6-->                      <!--TAB--><!--BOLD--><a href="#Unpacker:~Unpacker">~Unpacker</a><!--PLAIN-->()
+<!--TAB6-->       static <a href="http://root.cern.ch/root/html/TClass.html">TClass</a>* <!--TAB--><!--BOLD--><a href="#Unpacker:Class">Class</a><!--PLAIN-->()
+<!--TAB6-->               <a href="ListOfTypes.html#Bool_t">Bool_t</a> <!--TAB--><!--BOLD--><a href="#Unpacker:eventLoop">eventLoop</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> NbEvt = 50000, <a href="ListOfTypes.html#Int_t">Int_t</a> startEvt = 0)
+<!--TAB6-->            <a href="./HldEvent.html">HldEvent</a>* <!--TAB--><!--BOLD--><a href="#Unpacker:getpEvent">getpEvent</a><!--PLAIN-->()
+<!--TAB6-->      virtual <a href="http://root.cern.ch/root/html/TClass.html">TClass</a>* <!--TAB--><!--BOLD--><a href="#Unpacker:IsA">IsA</a><!--PLAIN-->() const
+<!--TAB6-->            <a href="./Unpacker.html">Unpacker</a>&amp; <!--TAB--><!--BOLD--><a href="#Unpacker:operator=">operator=</a><!--PLAIN-->(const <a href="./Unpacker.html">Unpacker</a>&amp;)
+<!--TAB6-->               <a href="ListOfTypes.html#Bool_t">Bool_t</a> <!--TAB--><!--BOLD--><a href="#Unpacker:setRootFile">setRootFile</a><!--PLAIN-->(const <a href="ListOfTypes.html#char">char</a>* filename = "test.root")
+<!--TAB6-->         virtual <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Unpacker:ShowMembers">ShowMembers</a><!--PLAIN-->(<a href="http://root.cern.ch/root/html/TMemberInspector.html">TMemberInspector</a>&amp; insp, <a href="ListOfTypes.html#char">char</a>* parent)
+<!--TAB6-->         virtual <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Unpacker:Streamer">Streamer</a><!--PLAIN-->(<a href="http://root.cern.ch/root/html/TBuffer.html">TBuffer</a>&amp; b)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Unpacker:StreamerNVirtual">StreamerNVirtual</a><!--PLAIN-->(<a href="http://root.cern.ch/root/html/TBuffer.html">TBuffer</a>&amp; b)
+</pre>
+
+<h3><!--TAB2-->  <a name="Unpacker:Data Members">Data Members</a></h3>
+<pre>
+
+<!--TAB4-->    <b>protected:</b><br>
+<!--TAB6-->       <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="Unpacker:fEventNr">fEventNr</a><!--PLAIN-->     <!--TAB--><i><a name="Title:fEventNr">Event Counter</a></i>
+<!--TAB6-->       <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="Unpacker:fEventLimit">fEventLimit</a><!--PLAIN-->  <!--TAB--><i><a name="Title:fEventLimit">Maximum event number per file </a></i>
+<!--TAB6-->      <a href="http://root.cern.ch/root/html/TFile.html">TFile</a>* <!--TAB--><!--BOLD--><a name="Unpacker:pRootFile">pRootFile</a><!--PLAIN-->    <!--TAB--><i><a name="Title:pRootFile">pointer to TFile with the output tree</a></i>
+
+<!--TAB4-->    <b>public:</b><br>
+<!--TAB6-->      <a href="./HldEvent.html">HldEvent</a>* <!--TAB--><!--BOLD--><a name="Unpacker:pEvent">pEvent</a><!--PLAIN-->  <!--TAB--><i><a name="Title:pEvent">Current event read from file</a></i>
+</pre>
+<!--END-->
+<hr>
+<!--DESCRIPTION--><h2><a name="Unpacker:description">Class Description</a></h2>
+<pre>   <a href="./Unpacker.html">Unpacker</a>
+
+
+
+
+</pre><hr>
+<!--FUNCTION--><a href="ListOfTypes.html#Bool_t">Bool_t</a> <a name="Unpacker:setRootFile" href="src/Unpacker.cxx.html#Unpacker:setRootFile">setRootFile</a>(const <a href="ListOfTypes.html#char">char</a>* filename/*="test.root" */)
+<br>
+<hr>
+<!--FUNCTION--><a href="ListOfTypes.html#Bool_t">Bool_t</a> <a name="Unpacker:eventLoop" href="src/Unpacker.cxx.html#Unpacker:eventLoop">eventLoop</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> nbEvt,<a href="ListOfTypes.html#Int_t">Int_t</a> startEv)
+//to bedzie do odczytywania zdarzen i zapisywania do drzewa
+<br>
+<pre><a href="ListOfTypes.html#Int_t">Int_t</a> test=0;
+</pre><br><br><br>
+<h3>Inline Functions</h3>
+<hr>
+<pre>
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Unpacker:~Unpacker" href="unpacker_wk.h">~Unpacker</a>()
+<!--INLINE FUNCTION--><!--TAB6-->           <a href="./Unpacker.html">Unpacker</a> <a name="Unpacker:Unpacker" href="unpacker_wk.h">Unpacker</a>()
+<!--INLINE FUNCTION--><!--TAB6-->           <a href="./Unpacker.html">Unpacker</a> <a name="Unpacker:Unpacker" href="unpacker_wk.h">Unpacker</a>(const <a href="ListOfTypes.html#char">char</a>* name, <a href="ListOfTypes.html#Int_t">Int_t</a> subEvtId)
+<!--INLINE FUNCTION--><!--TAB6-->          <a href="./HldEvent.html">HldEvent</a>* <a name="Unpacker:getpEvent" href="unpacker_wk.h">getpEvent</a>()
+<!--INLINE FUNCTION--><!--TAB6-->            <a href="http://root.cern.ch/root/html/TClass.html">TClass</a>* <a name="Unpacker:Class" href="unpacker_wk.h">Class</a>()
+<!--INLINE FUNCTION--><!--TAB6-->            <a href="http://root.cern.ch/root/html/TClass.html">TClass</a>* <a name="Unpacker:IsA" href="unpacker_wk.h">IsA</a>() const
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Unpacker:ShowMembers" href="unpacker_wk.h">ShowMembers</a>(<a href="http://root.cern.ch/root/html/TMemberInspector.html">TMemberInspector</a>&amp; insp, <a href="ListOfTypes.html#char">char</a>* parent)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Unpacker:Streamer" href="unpacker_wk.h">Streamer</a>(<a href="http://root.cern.ch/root/html/TBuffer.html">TBuffer</a>&amp; b)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Unpacker:StreamerNVirtual" href="unpacker_wk.h">StreamerNVirtual</a>(<a href="http://root.cern.ch/root/html/TBuffer.html">TBuffer</a>&amp; b)
+<!--INLINE FUNCTION--><!--TAB6-->           <a href="./Unpacker.html">Unpacker</a> <a name="Unpacker:Unpacker" href="unpacker_wk.h">Unpacker</a>(const <a href="./Unpacker.html">Unpacker</a>&amp;)
+<!--INLINE FUNCTION--><!--TAB6-->          <a href="./Unpacker.html">Unpacker</a>&amp; <a name="Unpacker:operator=" href="unpacker_wk.h">operator=</a>(const <a href="./Unpacker.html">Unpacker</a>&amp;)
+</pre>
+
+<hr><br>
+<!--SIGNATURE-->
+<em>Author: <a href="wojciech.krzemien@if.uj.edu.pl">Wojciech Krzemien</a> 12.10.06</em><br>
+<em>Last update: Tue Oct 24 15:59:13 2006</em><br>
+<br>
+<hr>
+<center>
+<address>
+<a href="http://root.cern.ch/root/Welcome.html">ROOT page</a> - <a href="ClassIndex.html">Class index</a> - <a href="ClassHierarchy.html">Class Hierarchy</a> - <a href="#TopOfPage">Top of the page</a><br>
+</address>
+</center>
+<hr>
+<address>
+This page has been automatically generated. If you have any comments or suggestions about the page layout send a mail to <a href="mailto:rootdev@root.cern.ch">ROOT support</a>, or contact <a href="mailto:rootdev@root.cern.ch">the developers</a> with any questions or problems regarding ROOT.
+</address>
+</body>
+</html>

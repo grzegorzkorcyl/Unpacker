@@ -1,0 +1,186 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!--                                             -->
+<!-- Author: ROOT team (rootdev@hpsalo.cern.ch)  -->
+<!--                                             -->
+<!--   Date: Tue Oct 24 15:59:12 2006            -->
+<!--                                             -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Unpacker - source file</title>
+<link rev=made href="mailto:rootdev@root.cern.ch">
+<meta name="rating" content="General">
+<meta name="objecttype" content="Manual">
+<meta name="keywords" content="software development, oo, object oriented, unix, x11, windows, c++, html, rene brun, fons rademakers">
+<meta name="description" content="ROOT - An Object Oriented Framework For Large Scale Data Analysis.">
+</head>
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#551a8b" ALINK="#ff0000" TEXT="#000000">
+<a name="TopOfPage"></a>
+<pre>
+<b>// File: unpacker_wk.cc</b>
+<b>//</b>
+<b>// Author: Wojciech Krzemien &lt;wojciech.krzemien@if.uj.edu.pl&gt; 12.10.06</b>
+<b>// Modified:</b>
+<b>// </b>
+
+#include "<a href="../unpacker_wk.h">unpacker_wk.h</a>"
+<b>//#include &lt;<a href="http://root.cern.ch/root/html/TH2.html">TH2</a>.h&gt;</b>
+<b>//#include &lt;<a href="http://root.cern.ch/root/html/TStyle.html">TStyle</a>.h&gt;</b>
+<b>//#include &lt;<a href="http://root.cern.ch/root/html/TCanvas.html">TCanvas</a>.h&gt;</b>
+<b>//#include "htrbbaseunpacker.h"</b>
+<b>//#include "htrblookup.h"</b>
+<b>//#include "hdebug.h"</b>
+<b>//#include "hades.h"</b>
+<b>//#include "hevent.h"</b>
+<b>//#include "hldsubevt.h"</b>
+<b>//#include "heventheader.h"</b>
+#include &lt;iostream&gt;
+#include &lt;iomanip&gt;
+#include &lt;stdlib.h&gt;
+#include "<a href="../hldevent_wk.h">hldevent_wk.h</a>" 
+#include "<a href="../event_wk.h">event_wk.h</a>"
+
+<b>//______________________________________________________________________________</b>
+<b>//   <a href=".././Unpacker.html">Unpacker</a></b>
+<b>//</b>
+<b>//</b>
+<b>//</b>
+<b>////////////////////////////////////////////////////////////////////////////////</b>
+
+using namespace std;
+
+ClassImp(<a href=".././Unpacker.html">Unpacker</a>)
+
+<b>//______________________________________________________________________________</b>
+<a name="Unpacker:setRootFile"> </a><a href="../ListOfTypes.html#Bool_t">Bool_t</a> <a href=".././Unpacker.html#Unpacker:setRootFile">Unpacker::setRootFile</a>(const <a href="../ListOfTypes.html#char">char</a>* filename/*="test.root" */)
+{
+  if(<a href=".././Unpacker.html#Unpacker:pRootFile">pRootFile</a>)
+  {
+	  delete <a href=".././Unpacker.html#Unpacker:pRootFile">pRootFile</a>;
+	  <a href=".././Unpacker.html#Unpacker:pRootFile">pRootFile</a>=new <a href="http://root.cern.ch/root/html/TFile.html">TFile</a>(filename,"RECREATE");	  
+  }
+  else	<a href=".././Unpacker.html#Unpacker:pRootFile">pRootFile</a>=new <a href="http://root.cern.ch/root/html/TFile.html">TFile</a>(filename,"RECREATE");	  
+
+return kTRUE;
+}
+ 
+	
+/*wk: from hldfilesource*/
+/*
+EDsState <a href=".././Unpacker.html#Unpacker:getNextEvent">Unpacker::getNextEvent</a>(<a href="../ListOfTypes.html#Bool_t">Bool_t</a> doUnpack) {
+<b>  // loops over the event files in the runtime database</b>
+<b>  // Tries to read a new event from the LMD file and put the info into the</b>
+<b>  // HEvent structure:</b>
+
+  if(isDumped) {
+    if (dumpEvt()==kDsError) {
+      if (getNextFile()==kFALSE) return kDsEndData;
+      else return kDsEndFile;
+    }
+    return kDsOk;
+  }
+
+  if (isScanned) {
+    if (scanEvt()==kDsError) {
+      if (getNextFile()==kFALSE) return kDsEndData;
+      else return kDsEndFile;
+    }
+    return kDsOk;
+  }
+
+  <a href=".././Unpacker.html#Unpacker:fEventNr">fEventNr</a>++;
+
+  if ( !((HldFilEvt*)fReadEvent)-&gt;execute() || !(<a href=".././Unpacker.html#Unpacker:fEventNr">fEventNr</a>&lt;<a href=".././Unpacker.html#Unpacker:fEventLimit">fEventLimit</a>)) {
+<b>    //End of current file</b>
+    <a href=".././Unpacker.html#Unpacker:fEventNr">fEventNr</a> = 0;
+    if (getNextFile()==kFALSE) return kDsEndData;
+    else return kDsEndFile;
+  }
+
+  if(doUnpack){
+    decodeHeader((*fEventAddr)-&gt;getHeader());
+    iter-&gt;Reset();
+    HldUnpack *unpacker;
+    while ( (unpacker=(HldUnpack *)iter-&gt;Next())!=NULL) {
+      if (!unpacker-&gt;execute()) return kDsError;
+    }
+  }
+  return kDsOk;
+}
+*/
+
+<b>//______________________________________________________________________________</b>
+<a name="Unpacker:eventLoop"> </a><a href="../ListOfTypes.html#Bool_t">Bool_t</a> <a href=".././Unpacker.html#Unpacker:eventLoop">Unpacker::eventLoop</a>(<a href="../ListOfTypes.html#Int_t">Int_t</a> nbEvt,<a href="../ListOfTypes.html#Int_t">Int_t</a> startEv)
+//to bedzie do odczytywania zdarzen i zapisywania do drzewa
+{
+<b>  //<a href="../ListOfTypes.html#Int_t">Int_t</a> test=0;</b>
+  <a href="http://root.cern.ch/root/html/TFile.html">TFile</a> hfile("<a href=".././Event.html">Event</a>.root","RECREATE");
+  <a href="http://root.cern.ch/root/html/TTree.html">TTree</a> *tree = new <a href="http://root.cern.ch/root/html/TTree.html">TTree</a>("T","An example of a <a href="http://root.cern.ch/root/html/ROOT.html">ROOT</a> tree");
+  tree-&gt;SetAutoSave(1000000000); //autosave when 1 GB written
+  <a href=".././Event.html">Event</a>* event=0;
+  <a href="../ListOfTypes.html#Int_t">Int_t</a> split = 2;
+  <a href="../ListOfTypes.html#Int_t">Int_t</a> bsize = 64000;
+  cout&lt;&lt; "Tworzymy drzewko"&lt;&lt;endl;
+  tree-&gt;Branch("event","<a href=".././Event.html">Event</a>", &amp;event, bsize,split);
+<b>// if(tree-&gt;GetBranchStatus("event")==kTRUE)	cout&lt;&lt;"aktywny"&lt;&lt;endl;</b>
+<b>//  cout&lt;&lt;"to zwraca Branch(): "&lt;&lt;test&lt;&lt;endl;	  </b>
+
+ for(<a href="../ListOfTypes.html#Int_t">Int_t</a> i=0; i&lt; nbEvt; i++)
+ {       
+   cout&lt;&lt;"JESTEM W PETLI"&lt;&lt;endl;
+   <a href=".././Unpacker.html#Unpacker:pEvent">pEvent</a>-&gt;<a href=".././HldEvent.html#HldEvent:execute">execute</a>();
+   event= new <a href=".././Event.html">Event</a>(*<a href=".././Unpacker.html#Unpacker:pEvent">pEvent</a>);
+   event-&gt;addHit();
+   event-&gt;addHit();
+   cout&lt;&lt;"Wypelniamy drzewko"&lt;&lt;event-&gt;getEvtSize()&lt;&lt;endl;
+  tree-&gt;Fill();   
+<b>   //cout&lt;&lt;"to zwraca Fill(): "&lt;&lt;test&lt;&lt;endl;	  </b>
+   
+   delete event;
+   
+<b>   //potem gdzies to zapisujemy</b>
+   <a href=".././Unpacker.html#Unpacker:fEventNr">fEventNr</a>++;
+ }
+<b> //else return kFALSE;</b>
+ hfile.Write();
+<b> //hfile.Close();</b>
+<b> //na razie czytamy rok z ostatniego odczytanego, zeby nie bylo</b>
+ cout &lt;&lt; "ROK " &lt;&lt; <a href=".././Unpacker.html#Unpacker:pEvent">pEvent</a>-&gt;<a href=".././HldEvent.html#HldEvent:getYear">getYear</a>()&lt;&lt;endl;
+ delete tree;
+ return kTRUE;
+}
+
+/*
+<a href="../ListOfTypes.html#int">int</a> main()
+{
+ <a href=".././Unpacker.html">Unpacker</a> A("./xx06205131304.hld",802);
+<b> //<a href=".././HldEvent.html">HldEvent</a> A("./xx06205131304.hld");</b>
+<b>// for(<a href="../ListOfTypes.html#Int_t">Int_t</a> i=0;i&lt;4; i++)</b>
+<b>// {</b>
+     A.<a href="#Unpacker:eventLoop">eventLoop</a>(4);
+<b> //   cout&lt;&lt;"W PETLI"&lt;&lt;endl; </b>
+<b>// if(A-&gt;read()==kFALSE)	cout&lt;&lt;"kFALSE"&lt;&lt;endl;</b>
+<b>// cout&lt;&lt;"ROCZEK: "&lt;&lt;A-&gt;getYear()&lt;&lt;endl;</b>
+<b>// cout&lt;&lt;"ROZMIAR: "&lt;&lt;A-&gt;getSize()&lt;&lt;endl;</b>
+<b>// }</b>
+ cout&lt;&lt;"ROZMIAR HLDEVENT PO PRZECZYTANIU: "&lt;&lt;sizeof(A)&lt;&lt;endl;
+ 
+ return 0;
+}
+*/
+</pre>
+
+<!--SIGNATURE-->
+<br>
+<hr>
+<center>
+<address>
+<a href="http://root.cern.ch/root/Welcome.html">ROOT page</a> - <a href="../ClassIndex.html">Class index</a> - <a href="../ClassHierarchy.html">Class Hierarchy</a> - <a href="#TopOfPage">Top of the page</a><br>
+</address>
+</center>
+<hr>
+<address>
+This page has been automatically generated. If you have any comments or suggestions about the page layout send a mail to <a href="mailto:rootdev@root.cern.ch">ROOT support</a>, or contact <a href="mailto:rootdev@root.cern.ch">the developers</a> with any questions or problems regarding ROOT.
+</address>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!--                                             -->
+<!-- Author: ROOT team (rootdev@hpsalo.cern.ch)  -->
+<!--                                             -->
+<!--   Date: Thu Oct 19 18:35:44 2006            -->
+<!--                                             -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>HldSubEvent</title>
+<link rev=made href="mailto:rootdev@root.cern.ch">
+<meta name="rating" content="General">
+<meta name="objecttype" content="Manual">
+<meta name="keywords" content="software development, oo, object oriented, unix, x11, windows, c++, html, rene brun, fons rademakers">
+<meta name="description" content="ROOT - An Object Oriented Framework For Large Scale Data Analysis.">
+</head>
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#551a8b" ALINK="#ff0000" TEXT="#000000">
+<a name="TopOfPage"></a>
+<table cellpadding="2" border="1" style="float:right;"><tr><td>#include "hldsubevent_wk.h"</td></tr></table>
+<!--BEGIN-->
+<center>
+<h1>HldSubEvent</h1>
+<hr width=300>
+<!--SDL--><em><a href="#HldSubEvent:description">class description</a> - <a href="src/HldSubEvent.cxx.html">source file</a> - <a href="HldSubEvent_Tree.pdf">inheritance tree (.pdf)</a></em>
+<hr width=300>
+</center>
+<h2>class <a name="HldSubEvent" href="hldsubevent_wk.h">HldSubEvent</a> : public <a href="http://root.cern.ch/root/html/TObject.html">TObject</a></h2>
+<!--INHERITANCE TREE-->
+<table><tr><td width="10%"></td><td width="70%">Inheritance Chart:</td></tr><tr><td width="10%"></td><td width="70%"><table width="100%" border="1"><tr><td>
+<table width="100%" border="0" cellpadding ="0" cellspacing="2"><tr>
+<td><table><tr>
+<td bgcolor="#f7f7f7" align="right">
+<table><tr><td>
+<center><tt><a name="TObject" href="http://root.cern.ch/root/html/TObject.html">TObject</a></tt></center>
+</td>
+</tr></table>
+</td>
+</tr></table></td>
+<td>&lt;-</td><td>
+<center><big><b><tt><a name="HldSubEvent" href="./HldSubEvent.html">HldSubEvent</a></tt></b></big></center>
+</td>
+<td><table><tr>
+<td></td>
+</tr></table></td>
+</tr></table>
+</td></tr></table></td></tr></table>
+<pre>
+<!--TAB4-->    <b>private:</b><br>
+<!--TAB6-->      <a href="ListOfTypes.html#size_t">size_t</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:align8">align8</a><!--PLAIN-->(const <a href="ListOfTypes.html#size_t">size_t</a> i) const
+<!--TAB6-->         <a href="ListOfTypes.html#int">int</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:byte">byte</a><!--PLAIN-->(<a href="ListOfTypes.html#int">int</a> b, <a href="ListOfTypes.html#UInt4">UInt4</a> i) const
+<!--TAB6-->      <a href="ListOfTypes.html#size_t">size_t</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:getDataPaddedSize">getDataPaddedSize</a><!--PLAIN-->() const
+<!--TAB6-->      <a href="ListOfTypes.html#size_t">size_t</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:getHdrLen">getHdrLen</a><!--PLAIN-->() const
+<!--TAB6-->      <a href="ListOfTypes.html#size_t">size_t</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:getHdrSize">getHdrSize</a><!--PLAIN-->() const
+<!--TAB6-->      <a href="ListOfTypes.html#Bool_t">Bool_t</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:isSwapped">isSwapped</a><!--PLAIN-->() const
+<!--TAB6-->        <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:resetSwapFlag">resetSwapFlag</a><!--PLAIN-->()
+<!--TAB6-->        <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:swap2">swap2</a><!--PLAIN-->(<a href="ListOfTypes.html#UShort_t">UShort_t</a>* p, const <a href="ListOfTypes.html#size_t">size_t</a> len) const
+<!--TAB6-->        <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:swap4">swap4</a><!--PLAIN-->(<a href="ListOfTypes.html#UInt_t">UInt_t</a>* p, const <a href="ListOfTypes.html#size_t">size_t</a> len) const
+<!--TAB6-->        <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:swapHdr">swapHdr</a><!--PLAIN-->()
+<!--TAB6-->      <a href="ListOfTypes.html#Bool_t">Bool_t</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:wasSwapped">wasSwapped</a><!--PLAIN-->() const
+
+<!--TAB4-->    <b>public:</b><br>
+<!--TAB6-->                      <!--TAB--><!--BOLD--><a href="#HldSubEvent:HldSubEvent">HldSubEvent</a><!--PLAIN-->()
+<!--TAB6-->                      <!--TAB--><!--BOLD--><a href="#HldSubEvent:HldSubEvent">HldSubEvent</a><!--PLAIN-->(<a href="ListOfTypes.html#UInt4">UInt4</a>* p)
+<!--TAB6-->                      <!--TAB--><!--BOLD--><a href="#HldSubEvent:HldSubEvent">HldSubEvent</a><!--PLAIN-->(const <a href="./HldSubEvent.html">HldSubEvent</a>&amp;)
+<!--TAB6-->                      <!--TAB--><!--BOLD--><a href="#HldSubEvent:~HldSubEvent">~HldSubEvent</a><!--PLAIN-->()
+<!--TAB6-->       static <a href="http://root.cern.ch/root/html/TClass.html">TClass</a>* <!--TAB--><!--BOLD--><a href="#HldSubEvent:Class">Class</a><!--PLAIN-->()
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:dumpIt">dumpIt</a><!--PLAIN-->(FILE* output = stderr) const
+<!--TAB6-->               <a href="ListOfTypes.html#UInt4">UInt4</a>* <!--TAB--><!--BOLD--><a href="#HldSubEvent:getData">getData</a><!--PLAIN-->() const
+<!--TAB6-->               <a href="ListOfTypes.html#size_t">size_t</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:getDataLen">getDataLen</a><!--PLAIN-->() const
+<!--TAB6-->               <a href="ListOfTypes.html#size_t">size_t</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:getDataSize">getDataSize</a><!--PLAIN-->() const
+<!--TAB6-->                <a href="ListOfTypes.html#UInt4">UInt4</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:getDecoding">getDecoding</a><!--PLAIN-->() const
+<!--TAB6-->               <a href="ListOfTypes.html#UInt4">UInt4</a>* <!--TAB--><!--BOLD--><a href="#HldSubEvent:getEnd">getEnd</a><!--PLAIN-->() const
+<!--TAB6-->               <a href="ListOfTypes.html#UInt_t">UInt_t</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:getErrorBit">getErrorBit</a><!--PLAIN-->()
+<!--TAB6-->               <a href="ListOfTypes.html#UInt4">UInt4</a>* <!--TAB--><!--BOLD--><a href="#HldSubEvent:getHeader">getHeader</a><!--PLAIN-->() const
+<!--TAB6-->                <a href="ListOfTypes.html#UInt4">UInt4</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:getId">getId</a><!--PLAIN-->() const
+<!--TAB6-->               <a href="ListOfTypes.html#UInt4">UInt4</a>* <!--TAB--><!--BOLD--><a href="#HldSubEvent:getPaddedEnd">getPaddedEnd</a><!--PLAIN-->() const
+<!--TAB6-->               <a href="ListOfTypes.html#size_t">size_t</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:getPaddedSize">getPaddedSize</a><!--PLAIN-->() const
+<!--TAB6-->               <a href="ListOfTypes.html#size_t">size_t</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:getSize">getSize</a><!--PLAIN-->() const
+<!--TAB6-->                  <a href="ListOfTypes.html#int">int</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:getTrigNr">getTrigNr</a><!--PLAIN-->() const
+<!--TAB6-->                  <a href="ListOfTypes.html#int">int</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:getUnMaskedTrigNr">getUnMaskedTrigNr</a><!--PLAIN-->() const
+<!--TAB6-->               <a href="ListOfTypes.html#size_t">size_t</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:getWordSize">getWordSize</a><!--PLAIN-->() const
+<!--TAB6-->      virtual <a href="http://root.cern.ch/root/html/TClass.html">TClass</a>* <!--TAB--><!--BOLD--><a href="#HldSubEvent:IsA">IsA</a><!--PLAIN-->() const
+<!--TAB6-->         <a href="./HldSubEvent.html">HldSubEvent</a>&amp; <!--TAB--><!--BOLD--><a href="#HldSubEvent:operator=">operator=</a><!--PLAIN-->(const <a href="./HldSubEvent.html">HldSubEvent</a>&amp;)
+<!--TAB6-->               <a href="ListOfTypes.html#Bool_t">Bool_t</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:scanIt">scanIt</a><!--PLAIN-->()
+<!--TAB6-->         virtual <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:ShowMembers">ShowMembers</a><!--PLAIN-->(<a href="http://root.cern.ch/root/html/TMemberInspector.html">TMemberInspector</a>&amp; insp, <a href="ListOfTypes.html#char">char</a>* parent)
+<!--TAB6-->         virtual <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:Streamer">Streamer</a><!--PLAIN-->(<a href="http://root.cern.ch/root/html/TBuffer.html">TBuffer</a>&amp; b)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:StreamerNVirtual">StreamerNVirtual</a><!--PLAIN-->(<a href="http://root.cern.ch/root/html/TBuffer.html">TBuffer</a>&amp; b)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#HldSubEvent:swapData">swapData</a><!--PLAIN-->()
+</pre>
+
+<h3><!--TAB2-->  <a name="HldSubEvent:Data Members">Data Members</a></h3>
+<pre>
+<!--TAB4-->    <b>private:</b><br>
+<!--TAB6-->      <a href="ListOfTypes.html#Bool_t">Bool_t</a> <!--TAB--><!--BOLD--><a name="HldSubEvent:swapped">swapped</a><!--PLAIN-->  <!--TAB--><i><a name="Title:swapped"></a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#UInt4">UInt4</a>* <!--TAB--><!--BOLD--><a name="HldSubEvent:pHdr">pHdr</a><!--PLAIN-->     <!--TAB--><i><a name="Title:pHdr"></a></i>
+<!--TAB6-->      <a href="ListOfTypes.html#UInt4">UInt4</a>* <!--TAB--><!--BOLD--><a name="HldSubEvent:pData">pData</a><!--PLAIN-->    <!--TAB--><i><a name="Title:pData"></a></i>
+</pre>
+<!--END-->
+<hr>
+<!--DESCRIPTION--><h2><a name="HldSubEvent:description">Class Description</a></h2>
+<pre>   <a href="./HldSubEvent.html">HldSubEvent</a>
+
+
+</pre><hr>
+<!--FUNCTION--><a href="ListOfTypes.html#void">void</a> <a name="HldSubEvent:swapData" href="src/HldSubEvent.cxx.html#HldSubEvent:swapData">swapData</a>() <br>
+<hr>
+<!--FUNCTION--><a href="ListOfTypes.html#Bool_t">Bool_t</a> <a name="HldSubEvent:scanIt" href="src/HldSubEvent.cxx.html#HldSubEvent:scanIt">scanIt</a>(<a href="ListOfTypes.html#void">void</a>) <br>
+<pre>Checks the subevent for corruption. Returns kTRUE if correct.
+</pre><hr>
+<!--FUNCTION--><a href="ListOfTypes.html#void">void</a> <a name="HldSubEvent:dumpIt" href="src/HldSubEvent.cxx.html#HldSubEvent:dumpIt">dumpIt</a>(FILE* output) const<br>
+<hr>
+<!--FUNCTION--><a href="ListOfTypes.html#void">void</a> <a name="HldSubEvent:swap2" href="src/HldSubEvent.cxx.html#HldSubEvent:swap2">swap2</a>(<a href="ListOfTypes.html#UShort_t">UShort_t</a>* ptr, const <a href="ListOfTypes.html#size_t">size_t</a> len) const <br>
+<hr>
+<!--FUNCTION--><a href="ListOfTypes.html#void">void</a> <a name="HldSubEvent:swap4" href="src/HldSubEvent.cxx.html#HldSubEvent:swap4">swap4</a>(<a href="ListOfTypes.html#UInt4">UInt4</a>* p, const <a href="ListOfTypes.html#size_t">size_t</a> len) const <br>
+<br><br><br>
+<h3>Inline Functions</h3>
+<hr>
+<pre>
+<!--INLINE FUNCTION--><!--TAB6-->                <a href="ListOfTypes.html#void">void</a> <a name="HldSubEvent:~HldSubEvent" href="hldsubevent_wk.h">~HldSubEvent</a>()
+<!--INLINE FUNCTION--><!--TAB6-->         <a href="./HldSubEvent.html">HldSubEvent</a> <a name="HldSubEvent:HldSubEvent" href="hldsubevent_wk.h">HldSubEvent</a>()
+<!--INLINE FUNCTION--><!--TAB6-->         <a href="./HldSubEvent.html">HldSubEvent</a> <a name="HldSubEvent:HldSubEvent" href="hldsubevent_wk.h">HldSubEvent</a>(<a href="ListOfTypes.html#UInt4">UInt4</a>* p)
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#size_t">size_t</a> <a name="HldSubEvent:getWordSize" href="hldsubevent_wk.h">getWordSize</a>() const
+<!--INLINE FUNCTION--><!--TAB6-->                 <a href="ListOfTypes.html#int">int</a> <a name="HldSubEvent:getTrigNr" href="hldsubevent_wk.h">getTrigNr</a>() const
+<!--INLINE FUNCTION--><!--TAB6-->                 <a href="ListOfTypes.html#int">int</a> <a name="HldSubEvent:getUnMaskedTrigNr" href="hldsubevent_wk.h">getUnMaskedTrigNr</a>() const
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#size_t">size_t</a> <a name="HldSubEvent:getDataLen" href="hldsubevent_wk.h">getDataLen</a>() const
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#size_t">size_t</a> <a name="HldSubEvent:getSize" href="hldsubevent_wk.h">getSize</a>() const
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#UInt4">UInt4</a> <a name="HldSubEvent:getId" href="hldsubevent_wk.h">getId</a>() const
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#UInt4">UInt4</a> <a name="HldSubEvent:getDecoding" href="hldsubevent_wk.h">getDecoding</a>() const
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#UInt_t">UInt_t</a> <a name="HldSubEvent:getErrorBit" href="hldsubevent_wk.h">getErrorBit</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#UInt4">UInt4</a>* <a name="HldSubEvent:getHeader" href="hldsubevent_wk.h">getHeader</a>() const
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#UInt4">UInt4</a>* <a name="HldSubEvent:getData" href="hldsubevent_wk.h">getData</a>() const
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#size_t">size_t</a> <a name="HldSubEvent:getDataSize" href="hldsubevent_wk.h">getDataSize</a>() const
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#size_t">size_t</a> <a name="HldSubEvent:getPaddedSize" href="hldsubevent_wk.h">getPaddedSize</a>() const
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#UInt4">UInt4</a>* <a name="HldSubEvent:getEnd" href="hldsubevent_wk.h">getEnd</a>() const
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#UInt4">UInt4</a>* <a name="HldSubEvent:getPaddedEnd" href="hldsubevent_wk.h">getPaddedEnd</a>() const
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Bool_t">Bool_t</a> <a name="HldSubEvent:wasSwapped" href="hldsubevent_wk.h">wasSwapped</a>() const
+<!--INLINE FUNCTION--><!--TAB6-->                <a href="ListOfTypes.html#void">void</a> <a name="HldSubEvent:resetSwapFlag" href="hldsubevent_wk.h">resetSwapFlag</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#size_t">size_t</a> <a name="HldSubEvent:getHdrLen" href="hldsubevent_wk.h">getHdrLen</a>() const
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#size_t">size_t</a> <a name="HldSubEvent:getDataPaddedSize" href="hldsubevent_wk.h">getDataPaddedSize</a>() const
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Bool_t">Bool_t</a> <a name="HldSubEvent:isSwapped" href="hldsubevent_wk.h">isSwapped</a>() const
+<!--INLINE FUNCTION--><!--TAB6-->                <a href="ListOfTypes.html#void">void</a> <a name="HldSubEvent:swapHdr" href="hldsubevent_wk.h">swapHdr</a>()
+<!--INLINE FUNCTION--><!--TAB6-->                 <a href="ListOfTypes.html#int">int</a> <a name="HldSubEvent:byte" href="hldsubevent_wk.h">byte</a>(<a href="ListOfTypes.html#int">int</a> b, <a href="ListOfTypes.html#UInt4">UInt4</a> i) const
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#size_t">size_t</a> <a name="HldSubEvent:align8" href="hldsubevent_wk.h">align8</a>(const <a href="ListOfTypes.html#size_t">size_t</a> i) const
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#size_t">size_t</a> <a name="HldSubEvent:getHdrSize" href="hldsubevent_wk.h">getHdrSize</a>() const
+<!--INLINE FUNCTION--><!--TAB6-->             <a href="http://root.cern.ch/root/html/TClass.html">TClass</a>* <a name="HldSubEvent:Class" href="hldsubevent_wk.h">Class</a>()
+<!--INLINE FUNCTION--><!--TAB6-->             <a href="http://root.cern.ch/root/html/TClass.html">TClass</a>* <a name="HldSubEvent:IsA" href="hldsubevent_wk.h">IsA</a>() const
+<!--INLINE FUNCTION--><!--TAB6-->                <a href="ListOfTypes.html#void">void</a> <a name="HldSubEvent:ShowMembers" href="hldsubevent_wk.h">ShowMembers</a>(<a href="http://root.cern.ch/root/html/TMemberInspector.html">TMemberInspector</a>&amp; insp, <a href="ListOfTypes.html#char">char</a>* parent)
+<!--INLINE FUNCTION--><!--TAB6-->                <a href="ListOfTypes.html#void">void</a> <a name="HldSubEvent:Streamer" href="hldsubevent_wk.h">Streamer</a>(<a href="http://root.cern.ch/root/html/TBuffer.html">TBuffer</a>&amp; b)
+<!--INLINE FUNCTION--><!--TAB6-->                <a href="ListOfTypes.html#void">void</a> <a name="HldSubEvent:StreamerNVirtual" href="hldsubevent_wk.h">StreamerNVirtual</a>(<a href="http://root.cern.ch/root/html/TBuffer.html">TBuffer</a>&amp; b)
+<!--INLINE FUNCTION--><!--TAB6-->         <a href="./HldSubEvent.html">HldSubEvent</a> <a name="HldSubEvent:HldSubEvent" href="hldsubevent_wk.h">HldSubEvent</a>(const <a href="./HldSubEvent.html">HldSubEvent</a>&amp;)
+<!--INLINE FUNCTION--><!--TAB6-->        <a href="./HldSubEvent.html">HldSubEvent</a>&amp; <a name="HldSubEvent:operator=" href="hldsubevent_wk.h">operator=</a>(const <a href="./HldSubEvent.html">HldSubEvent</a>&amp;)
+</pre>
+
+<hr><br>
+<!--SIGNATURE-->
+<em>Author: <a href="wojciech.krzemien@if.uj.edu.pl">Wojciech Krzemien</a> 12.10.06</em><br>
+<em>Last update: Thu Oct 19 18:35:44 2006</em><br>
+<br>
+<hr>
+<center>
+<address>
+<a href="http://root.cern.ch/root/Welcome.html">ROOT page</a> - <a href="ClassIndex.html">Class index</a> - <a href="ClassHierarchy.html">Class Hierarchy</a> - <a href="#TopOfPage">Top of the page</a><br>
+</address>
+</center>
+<hr>
+<address>
+This page has been automatically generated. If you have any comments or suggestions about the page layout send a mail to <a href="mailto:rootdev@root.cern.ch">ROOT support</a>, or contact <a href="mailto:rootdev@root.cern.ch">the developers</a> with any questions or problems regarding ROOT.
+</address>
+</body>
+</html>

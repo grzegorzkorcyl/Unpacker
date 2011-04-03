@@ -1,0 +1,138 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!--                                             -->
+<!-- Author: ROOT team (rootdev@hpsalo.cern.ch)  -->
+<!--                                             -->
+<!--   Date: Thu Oct 19 18:35:44 2006            -->
+<!--                                             -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>HldSubEvent - source file</title>
+<link rev=made href="mailto:rootdev@root.cern.ch">
+<meta name="rating" content="General">
+<meta name="objecttype" content="Manual">
+<meta name="keywords" content="software development, oo, object oriented, unix, x11, windows, c++, html, rene brun, fons rademakers">
+<meta name="description" content="ROOT - An Object Oriented Framework For Large Scale Data Analysis.">
+</head>
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#551a8b" ALINK="#ff0000" TEXT="#000000">
+<a name="TopOfPage"></a>
+<pre>
+<b>// File: hldsubevent.cc</b>
+<b>//</b>
+<b>// Author: Wojciech Krzemien &lt;wojciech.krzemien@if.uj.edu.pl&gt; 12.10.06</b>
+<b>// Modified</b>
+
+#include "<a href="../hldsubevent_wk.h">hldsubevent_wk.h</a>"
+#include &lt;iostream&gt; 
+#include &lt;iomanip&gt;
+#include &lt;stdlib.h&gt;
+
+<b>//______________________________________________________________________________</b>
+<b>//   <a href=".././HldSubEvent.html">HldSubEvent</a></b>
+<b>//</b>
+<b>////////////////////////////////////////////////////////////////////////////////</b>
+
+using namespace std;
+
+ClassImp(<a href=".././HldSubEvent.html">HldSubEvent</a>)
+
+	
+<b>//______________________________________________________________________________</b>
+<a name="HldSubEvent:swapData"> </a><a href="../ListOfTypes.html#void">void</a> <a href=".././HldSubEvent.html#HldSubEvent:swapData">HldSubEvent::swapData</a>() {
+    if (<a href="#HldSubEvent:wasSwapped">wasSwapped</a>()) {
+	switch (<a href="#HldSubEvent:getWordSize">getWordSize</a>()) {
+	case 4:
+	    <a href="#HldSubEvent:swap4">swap4</a>((<a href="../ListOfTypes.html#UInt_t">UInt_t</a>*) <a href="#HldSubEvent:getData">getData</a>(), <a href="#HldSubEvent:getDataLen">getDataLen</a>());
+	    break;
+	case 2:
+	    <a href="#HldSubEvent:swap2">swap2</a>((<a href="../ListOfTypes.html#UShort_t">UShort_t</a>*) <a href="#HldSubEvent:getData">getData</a>(), <a href="#HldSubEvent:getDataLen">getDataLen</a>());
+	    break;
+	case 1:
+	    break;
+	default:
+	    cerr &lt;&lt; "Word Size of " &lt;&lt; <a href="#HldSubEvent:getWordSize">getWordSize</a>()
+		 &lt;&lt; " not supported" &lt;&lt; endl;
+	    exit(1);
+	}
+        <a href="#HldSubEvent:resetSwapFlag">resetSwapFlag</a>();   // make sure, subevent is not <a href=".././HldSubEvent.html#HldSubEvent:swapped">swapped</a> a second time
+    }
+} 
+
+<b>//______________________________________________________________________________</b>
+<a name="HldSubEvent:scanIt"> </a><a href="../ListOfTypes.html#Bool_t">Bool_t</a> <a href=".././HldSubEvent.html#HldSubEvent:scanIt">HldSubEvent::scanIt</a>(<a href="../ListOfTypes.html#void">void</a>) {
+<b>//Checks the subevent for corruption. Returns kTRUE if correct.</b>
+  <a href="../ListOfTypes.html#Bool_t">Bool_t</a> r=kTRUE;
+  
+  if (<a href="#HldSubEvent:getId">getId</a>()&gt;699 || <a href="#HldSubEvent:getId">getId</a>()&lt;1) {
+    r=kFALSE;
+    printf("SubEvent corruptedn");
+  }
+  return r;
+}
+
+<b>//______________________________________________________________________________</b>
+<a name="HldSubEvent:dumpIt"> </a><a href="../ListOfTypes.html#void">void</a> <a href=".././HldSubEvent.html#HldSubEvent:dumpIt">HldSubEvent::dumpIt</a>(FILE* output) const{
+
+  fprintf(output,"===========================================================n");
+  fprintf(output,"SubEvent: Id:%8i Size:%8i Decoding:%8i n",  
+	  <a href="#HldSubEvent:getId">getId</a>(),
+	  <a href="#HldSubEvent:getSize">getSize</a>(), 
+	  <a href="#HldSubEvent:getDecoding">getDecoding</a>()); 
+  fprintf(output,"TrigNr:%8in", <a href="#HldSubEvent:getTrigNr">getTrigNr</a>()); 
+  fprintf(output,"===========================================================n");
+ 
+  <a href="../ListOfTypes.html#UInt_t">UInt_t</a> *data;
+  data= <a href="#HldSubEvent:getData">getData</a>();
+  for(<a href="../ListOfTypes.html#UInt_t">UInt_t</a> i=0;i&lt;<a href="#HldSubEvent:getDataSize">getDataSize</a>()/sizeof(<a href="../ListOfTypes.html#UInt_t">UInt_t</a>);i++){
+    if(i % 4 == 0 ){ // newline with offset 
+     fprintf(output,"n0x%08x:", (<a href="../ListOfTypes.html#char">char</a> *) data - (<a href="../ListOfTypes.html#char">char</a> *) <a href="#HldSubEvent:getData">getData</a>());
+    }
+    fprintf(output,"  0x%08x", data[i]);
+  }
+
+  fprintf(output,"n");
+  fprintf(output,"n");
+}
+
+<b>//______________________________________________________________________________</b>
+<a name="HldSubEvent:swap2"> </a><a href="../ListOfTypes.html#void">void</a> <a href=".././HldSubEvent.html#HldSubEvent:swap2">HldSubEvent::swap2</a>(<a href="../ListOfTypes.html#UShort_t">UShort_t</a>* ptr, const <a href="../ListOfTypes.html#size_t">size_t</a> len) const {
+    for (<a href="../ListOfTypes.html#size_t">size_t</a> i = 0; i &lt; len; ++i) {
+        <a href="../ListOfTypes.html#UShort_t">UShort_t</a> tmp = ptr[i];
+        <a href="../ListOfTypes.html#UChar_t">UChar_t</a>* t = (<a href="../ListOfTypes.html#UChar_t">UChar_t</a>*) &amp;tmp;
+        <a href="../ListOfTypes.html#UChar_t">UChar_t</a>* p = (<a href="../ListOfTypes.html#UChar_t">UChar_t</a>*) &amp;ptr[i];
+        p[0] = t[1];
+        p[1] = t[0];
+    }
+}
+
+<b>//______________________________________________________________________________</b>
+<a name="HldSubEvent:swap4"> </a><a href="../ListOfTypes.html#void">void</a> <a href=".././HldSubEvent.html#HldSubEvent:swap4">HldSubEvent::swap4</a>(<a href="../ListOfTypes.html#UInt4">UInt4</a>* p, const <a href="../ListOfTypes.html#size_t">size_t</a> len) const {
+  <a href="../ListOfTypes.html#UInt4">UInt4</a> tmp;
+  UInt1* d;
+  UInt1* const s = (UInt1*) &amp;tmp;
+  for (<a href="../ListOfTypes.html#size_t">size_t</a> i = 0; i &lt; len; i++) {
+    d = (UInt1*) (p + i);
+    tmp = p[i];
+    d[0] = s[3];
+    d[1] = s[2];
+    d[2] = s[1];
+    d[3] = s[0];
+  }
+}
+
+</pre>
+
+<!--SIGNATURE-->
+<br>
+<hr>
+<center>
+<address>
+<a href="http://root.cern.ch/root/Welcome.html">ROOT page</a> - <a href="../ClassIndex.html">Class index</a> - <a href="../ClassHierarchy.html">Class Hierarchy</a> - <a href="#TopOfPage">Top of the page</a><br>
+</address>
+</center>
+<hr>
+<address>
+This page has been automatically generated. If you have any comments or suggestions about the page layout send a mail to <a href="mailto:rootdev@root.cern.ch">ROOT support</a>, or contact <a href="mailto:rootdev@root.cern.ch">the developers</a> with any questions or problems regarding ROOT.
+</address>
+</body>
+</html>

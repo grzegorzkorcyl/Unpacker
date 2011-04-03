@@ -1,0 +1,155 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!--                                             -->
+<!-- Author: ROOT team (rootdev@hpsalo.cern.ch)  -->
+<!--                                             -->
+<!--   Date: Tue Oct 24 15:59:12 2006            -->
+<!--                                             -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Event - source file</title>
+<link rev=made href="mailto:rootdev@root.cern.ch">
+<meta name="rating" content="General">
+<meta name="objecttype" content="Manual">
+<meta name="keywords" content="software development, oo, object oriented, unix, x11, windows, c++, html, rene brun, fons rademakers">
+<meta name="description" content="ROOT - An Object Oriented Framework For Large Scale Data Analysis.">
+</head>
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#551a8b" ALINK="#ff0000" TEXT="#000000">
+<a name="TopOfPage"></a>
+<pre>
+<b>// File: event_wk.cc</b>
+<b>//</b>
+<b>// Author: Wojciech Krzemien &lt;wojciech.krzemien@if.uj.edu.pl&gt; 12.10.06</b>
+<b>// Modified:</b>
+
+#include "<a href="../hit_wk.h">hit_wk.h</a>"
+#include "<a href="../event_wk.h">event_wk.h</a>"
+#include "<a href="../hldevent_wk.h">hldevent_wk.h</a>"
+
+<b>//______________________________________________________________________________</b>
+<b>//   <a href=".././Event.html">Event</a>  </b>
+<b>//</b>
+<b>//</b>
+<b>//</b>
+<b>////////////////////////////////////////////////////////////////////////////////</b>
+
+using namespace std;
+
+ClassImp(<a href=".././Event.html">Event</a>)
+
+<a href="http://root.cern.ch/root/html/TClonesArray.html">TClonesArray</a> *<a href=".././Event.html#Event:gHits">Event::gHits</a> = 0;
+
+
+<b>//______________________________________________________________________________</b>
+<a name="Event:Event"> </a><a href=".././Event.html#Event:Event">Event::Event</a>()
+// Create an <a href=".././Event.html">Event</a> object.
+// When the constructor is invoked for the first time, the class static
+// variable <a href=".././Event.html#Event:gHits">gHits</a> is 0 and the <a href="http://root.cern.ch/root/html/TClonesArray.html">TClonesArray</a> <a href=".././Event.html#Event:gHits">gHits</a> is created.
+{
+   cout&lt;&lt;"W Konstruktorze <a href=".././Event.html">Event</a>() "&lt;&lt;endl;
+   if (!<a href=".././Event.html#Event:gHits">gHits</a>) <a href=".././Event.html#Event:gHits">gHits</a> = new <a href="http://root.cern.ch/root/html/TClonesArray.html">TClonesArray</a>("<a href=".././Hit.html">Hit</a>", 1000);
+      <a href=".././Event.html#Event:Hits">Hits</a> =<a href=".././Event.html#Event:gHits">gHits</a>;
+   <a href="#Event:clearAll">clearAll</a>();
+
+}
+
+<b>//______________________________________________________________________________</b>
+<a name="Event:Event"> </a><a href=".././Event.html#Event:Event">Event::Event</a>(const <a href=".././HldEvent.html">HldEvent</a>&amp; HldEvt)
+{
+   cout&lt;&lt;"W Konstruktorze <a href=".././Event.html">Event</a> (plik HLD) "&lt;&lt;endl;
+   if (!<a href=".././Event.html#Event:gHits">gHits</a>) <a href=".././Event.html#Event:gHits">gHits</a> = new <a href="http://root.cern.ch/root/html/TClonesArray.html">TClonesArray</a>("<a href=".././Hit.html">Hit</a>", 1000);
+      <a href=".././Event.html#Event:Hits">Hits</a> =<a href=".././Event.html#Event:gHits">gHits</a>;
+   <a href="#Event:clearAll">clearAll</a>();
+   <a href="#Event:fill">fill</a>(HldEvt);
+}
+
+<b>//______________________________________________________________________________</b>
+<a name="Event:~Event"> </a><a href=".././Event.html">Event</a>::~<a href=".././Event.html">Event</a>()
+{
+   <a href="#Event:clearAll">clearAll</a>();
+}
+
+
+<b>//______________________________________________________________________________</b>
+<a name="Event:clearAll"> </a><a href="../ListOfTypes.html#void">void</a> <a href=".././Event.html#Event:clearAll">Event::clearAll</a>()
+//
+{	
+ <a href=".././Event.html#Event:Hits">Hits</a>-&gt;<a href="http://root.cern.ch/root/html/TClonesArray.html#TClonesArray:Clear">Clear</a>();
+ <a href=".././Event.html#Event:totalNHits">totalNHits</a>=0;
+ <a href=".././Event.html#Event:EvtHdr">EvtHdr</a>.<a href=".././EventHdr.html#EventHdr:clearAll">clearAll</a>();
+ 
+ for(<a href="../ListOfTypes.html#Int_t">Int_t</a> i=0; i&lt;128; i++){
+   for(<a href="../ListOfTypes.html#Int_t">Int_t</a> k=0; k&lt;10; k++){
+      <a href=".././Event.html#Event:trbLeadingTime">trbLeadingTime</a>[i][k]  = -1000000;
+      <a href=".././Event.html#Event:trbTrailingTime">trbTrailingTime</a>[i][k] = -1000000;
+      <a href=".././Event.html#Event:trbADC">trbADC</a>[i][k]=-1; 
+   }    
+    <a href=".././Event.html#Event:trbLeadingMult">trbLeadingMult</a>[i]=0;  
+    <a href=".././Event.html#Event:trbTrailingMult">trbTrailingMult</a>[i]=0;
+ }
+ 
+}
+
+<b>//______________________________________________________________________________</b>
+<a name="Event:fill"> </a><a href="../ListOfTypes.html#Bool_t">Bool_t</a> <a href=".././Event.html#Event:fill">Event::fill</a>(const <a href=".././HldEvent.html">HldEvent</a>&amp; HldEvt)
+//what about some error's check
+{
+ <a href=".././Hit.html">Hit</a>* pCurrentHit;
+ <a href=".././Event.html#Event:EvtHdr">EvtHdr</a>.<a href=".././EventHdr.html#EventHdr:fill">fill</a>(HldEvt);  
+ <a href="#Event:setSubEvtId">setSubEvtId</a>(HldEvt.<a href="#Event:getSubEvtId">getSubEvtId</a>());
+
+ for(<a href="../ListOfTypes.html#Int_t">Int_t</a> i=0; i&lt;128; i++){
+   for(<a href="../ListOfTypes.html#Int_t">Int_t</a> k=0; k&lt;10; k++){
+      <a href=".././Event.html#Event:trbLeadingTime">trbLeadingTime</a>[i][k]  = HldEvt.<a href=".././Event.html#Event:trbLeadingTime">trbLeadingTime</a>[i][k];
+      <a href=".././Event.html#Event:trbTrailingTime">trbTrailingTime</a>[i][k] = HldEvt.<a href=".././Event.html#Event:trbTrailingTime">trbTrailingTime</a>[i][k];
+      <a href=".././Event.html#Event:trbADC">trbADC</a>[i][k]= HldEvt.<a href=".././Event.html#Event:trbADC">trbADC</a>[i][k]; 
+   }    
+    <a href=".././Event.html#Event:trbLeadingMult">trbLeadingMult</a>[i]=HldEvt.<a href=".././Event.html#Event:trbLeadingMult">trbLeadingMult</a>[i];  
+    <a href=".././Event.html#Event:trbTrailingMult">trbTrailingMult</a>[i]=HldEvt.<a href=".././Event.html#Event:trbTrailingMult">trbTrailingMult</a>[i];  
+ }
+
+ 
+ for(<a href="../ListOfTypes.html#Int_t">Int_t</a> i=0; i&lt;128; i++){
+     if (<a href=".././Event.html#Event:trbLeadingMult">trbLeadingMult</a>[i] &lt; 1) continue;        //Leading Time data for this channel exist
+<b>   //wk to set </b>
+     pCurrentHit=<a href="#Event:addHit">addHit</a>();
+     pCurrentHit-&gt;setChannel(i);
+     pCurrentHit-&gt;setTDC(i); //wk !!!change it
+<b>   //end wk</b>
+<b>    // fill time info for channel: mod, fiber</b>
+<b>    // Do it only for firs 4 hits (HHodoRaw can handle 4 hits) </b>
+    for(<a href="../ListOfTypes.html#Int_t">Int_t</a> chmult=0; (chmult&lt; <a href=".././Event.html#Event:trbLeadingMult">trbLeadingMult</a>[i] &amp;&amp; chmult &lt; 4); chmult++){
+             pCurrentHit-&gt;fillTimeAndWidth(<a href=".././Event.html#Event:trbLeadingTime">trbLeadingTime</a>[ i ][ chmult ], <a href=".././Event.html#Event:trbADC">trbADC</a> [ i ][ chmult ]) ;
+}
+ if(<a href=".././Event.html#Event:trbLeadingMult">trbLeadingMult</a>[i]  &gt; 4) pCurrentHit-&gt;setMult(<a href=".././Event.html#Event:trbLeadingMult">trbLeadingMult</a>[i]);
+      
+ }// for(<a href="../ListOfTypes.html#Int_t">Int_t</a> i=0; i&lt;128; i++)
+
+return kTRUE;
+<b>//wk from HHodoRaw</b>
+}
+
+<b>//______________________________________________________________________________</b>
+<a name="Event:addHit"> </a><a href=".././Hit.html">Hit</a> *<a href=".././Event.html#Event:addHit">Event::addHit</a>()
+{
+   <a href="http://root.cern.ch/root/html/TClonesArray.html">TClonesArray</a>&amp; hits= *<a href=".././Event.html#Event:Hits">Hits</a>;
+   <a href=".././Hit.html">Hit</a> *hit = new(hits[<a href=".././Event.html#Event:totalNHits">totalNHits</a>++]) <a href=".././Hit.html">Hit</a>(<a href=".././Event.html#Event:totalNHits">totalNHits</a>,3);
+   return hit;	
+}
+
+</pre>
+
+<!--SIGNATURE-->
+<br>
+<hr>
+<center>
+<address>
+<a href="http://root.cern.ch/root/Welcome.html">ROOT page</a> - <a href="../ClassIndex.html">Class index</a> - <a href="../ClassHierarchy.html">Class Hierarchy</a> - <a href="#TopOfPage">Top of the page</a><br>
+</address>
+</center>
+<hr>
+<address>
+This page has been automatically generated. If you have any comments or suggestions about the page layout send a mail to <a href="mailto:rootdev@root.cern.ch">ROOT support</a>, or contact <a href="mailto:rootdev@root.cern.ch">the developers</a> with any questions or problems regarding ROOT.
+</address>
+</body>
+</html>

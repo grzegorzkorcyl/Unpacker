@@ -1,0 +1,175 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<!--                                             -->
+<!-- Author: ROOT team (rootdev@hpsalo.cern.ch)  -->
+<!--                                             -->
+<!--   Date: Tue Oct 24 15:59:12 2006            -->
+<!--                                             -->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Event</title>
+<link rev=made href="mailto:rootdev@root.cern.ch">
+<meta name="rating" content="General">
+<meta name="objecttype" content="Manual">
+<meta name="keywords" content="software development, oo, object oriented, unix, x11, windows, c++, html, rene brun, fons rademakers">
+<meta name="description" content="ROOT - An Object Oriented Framework For Large Scale Data Analysis.">
+</head>
+<body BGCOLOR="#ffffff" LINK="#0000ff" VLINK="#551a8b" ALINK="#ff0000" TEXT="#000000">
+<a name="TopOfPage"></a>
+<table cellpadding="2" border="1" style="float:right;"><tr><td>#include "event_wk.h"</td></tr></table>
+<!--BEGIN-->
+<center>
+<h1>Event</h1>
+<hr width=300>
+<!--SDL--><em><a href="#Event:description">class description</a> - <a href="src/Event.cxx.html">source file</a> - <a href="Event_Tree.pdf">inheritance tree (.pdf)</a></em>
+<hr width=300>
+</center>
+<h2>class <a name="Event" href="event_wk.h">Event</a> : public <a href="http://root.cern.ch/root/html/TObject.html">TObject</a></h2>
+<!--INHERITANCE TREE-->
+<table><tr><td width="10%"></td><td width="70%">Inheritance Chart:</td></tr><tr><td width="10%"></td><td width="70%"><table width="100%" border="1"><tr><td>
+<table width="100%" border="0" cellpadding ="0" cellspacing="2"><tr>
+<td><table><tr>
+<td bgcolor="#f7f7f7" align="right">
+<table><tr><td>
+<center><tt><a name="TObject" href="http://root.cern.ch/root/html/TObject.html">TObject</a></tt></center>
+</td>
+</tr></table>
+</td>
+</tr></table></td>
+<td>&lt;-</td><td>
+<center><big><b><tt><a name="Event" href="./Event.html">Event</a></tt></b></big></center>
+</td>
+<td><table><tr>
+<td></td>
+</tr></table></td>
+</tr></table>
+</td></tr></table></td></tr></table>
+<pre>
+
+<!--TAB4-->    <b>public:</b><br>
+<!--TAB6-->                      <!--TAB--><!--BOLD--><a href="#Event:Event">Event</a><!--PLAIN-->()
+<!--TAB6-->                      <!--TAB--><!--BOLD--><a href="#Event:Event">Event</a><!--PLAIN-->(const <a href="./HldEvent.html">HldEvent</a>&amp; HldEvt)
+<!--TAB6-->                      <!--TAB--><!--BOLD--><a href="#Event:Event">Event</a><!--PLAIN-->(const <a href="./Event.html">Event</a>&amp;)
+<!--TAB6-->              virtual <!--TAB--><!--BOLD--><a href="#Event:~Event">~Event</a><!--PLAIN-->()
+<!--TAB6-->                 <a href="./Hit.html">Hit</a>* <!--TAB--><!--BOLD--><a href="#Event:addHit">addHit</a><!--PLAIN-->()
+<!--TAB6-->       static <a href="http://root.cern.ch/root/html/TClass.html">TClass</a>* <!--TAB--><!--BOLD--><a href="#Event:Class">Class</a><!--PLAIN-->()
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Event:clearAll">clearAll</a><!--PLAIN-->()
+<!--TAB6-->               <a href="ListOfTypes.html#Bool_t">Bool_t</a> <!--TAB--><!--BOLD--><a href="#Event:fill">fill</a><!--PLAIN-->(const <a href="./HldEvent.html">HldEvent</a>&amp;)
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Event:getEvtDataSize">getEvtDataSize</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Event:getEvtDate">getEvtDate</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Event:getEvtDay">getEvtDay</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Event:getEvtDecoding">getEvtDecoding</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Event:getEvtHour">getEvtHour</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Event:getEvtId">getEvtId</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Event:getEvtMinute">getEvtMinute</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Event:getEvtMonth">getEvtMonth</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Event:getEvtPad">getEvtPad</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Event:getEvtPaddedSize">getEvtPaddedSize</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Event:getEvtSecond">getEvtSecond</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Event:getEvtSeqNr">getEvtSeqNr</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Event:getEvtSize">getEvtSize</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Event:getEvtTime">getEvtTime</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Event:getEvtYear">getEvtYear</a><!--PLAIN-->()
+<!--TAB6-->                <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a href="#Event:getSubEvtId">getSubEvtId</a><!--PLAIN-->()
+<!--TAB6-->      virtual <a href="http://root.cern.ch/root/html/TClass.html">TClass</a>* <!--TAB--><!--BOLD--><a href="#Event:IsA">IsA</a><!--PLAIN-->() const
+<!--TAB6-->               <a href="./Event.html">Event</a>&amp; <!--TAB--><!--BOLD--><a href="#Event:operator=">operator=</a><!--PLAIN-->(const <a href="./Event.html">Event</a>&amp;)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Event:setSubEvtId">setSubEvtId</a><!--PLAIN-->(<a href="ListOfTypes.html#Int_t">Int_t</a> sb = 0)
+<!--TAB6-->         virtual <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Event:ShowMembers">ShowMembers</a><!--PLAIN-->(<a href="http://root.cern.ch/root/html/TMemberInspector.html">TMemberInspector</a>&amp; insp, <a href="ListOfTypes.html#char">char</a>* parent)
+<!--TAB6-->         virtual <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Event:Streamer">Streamer</a><!--PLAIN-->(<a href="http://root.cern.ch/root/html/TBuffer.html">TBuffer</a>&amp; b)
+<!--TAB6-->                 <a href="ListOfTypes.html#void">void</a> <!--TAB--><!--BOLD--><a href="#Event:StreamerNVirtual">StreamerNVirtual</a><!--PLAIN-->(<a href="http://root.cern.ch/root/html/TBuffer.html">TBuffer</a>&amp; b)
+</pre>
+
+<h3><!--TAB2-->  <a name="Event:Data Members">Data Members</a></h3>
+<pre>
+
+<!--TAB4-->    <b>protected:</b><br>
+<!--TAB6-->                  <a href="./EventHdr.html">EventHdr</a> <!--TAB--><!--BOLD--><a name="Event:EvtHdr">EvtHdr</a><!--PLAIN-->                    <!--TAB--><i><a name="Title:EvtHdr">contains data from event header </a></i>
+<!--TAB6-->                    <a href="ListOfTypes.html#UInt_t">UInt_t</a> <!--TAB--><!--BOLD--><a name="Event:subEvtId">subEvtId</a><!--PLAIN-->                  <!--TAB--><i><a name="Title:subEvtId"></a></i>
+<!--TAB6-->                     <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="Event:trbLeadingTime">trbLeadingTime[128][10]</a><!--PLAIN-->   <!--TAB--><i><a name="Title:trbLeadingTime"></a></i>
+<!--TAB6-->                     <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="Event:trbTrailingTime">trbTrailingTime[128][10]</a><!--PLAIN-->  <!--TAB--><i><a name="Title:trbTrailingTime"></a></i>
+<!--TAB6-->                     <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="Event:trbADC">trbADC[128][10]</a><!--PLAIN-->           <!--TAB--><i><a name="Title:trbADC"></a></i>
+<!--TAB6-->                     <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="Event:trbLeadingMult">trbLeadingMult[128]</a><!--PLAIN-->       <!--TAB--><i><a name="Title:trbLeadingMult"></a></i>
+<!--TAB6-->                     <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="Event:trbTrailingMult">trbTrailingMult[128]</a><!--PLAIN-->      <!--TAB--><i><a name="Title:trbTrailingMult"></a></i>
+<!--TAB6-->                     <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="Event:errors_per_event">errors_per_event</a><!--PLAIN-->          <!--TAB--><i><a name="Title:errors_per_event">number of errors per event</a></i>
+<!--TAB6-->                     <a href="ListOfTypes.html#Int_t">Int_t</a> <!--TAB--><!--BOLD--><a name="Event:totalNHits">totalNHits</a><!--PLAIN-->                <!--TAB--><i><a name="Title:totalNHits">total number of hits objects</a></i>
+<!--TAB6-->             <a href="http://root.cern.ch/root/html/TClonesArray.html">TClonesArray</a>* <!--TAB--><!--BOLD--><a name="Event:Hits">Hits</a><!--PLAIN-->                      <!--TAB--><i><a name="Title:Hits">array with all hits*/</a></i>
+<!--TAB6-->      static <a href="http://root.cern.ch/root/html/TClonesArray.html">TClonesArray</a>* <!--TAB--><!--BOLD--><a name="Event:gHits">gHits</a><!--PLAIN-->                     <!--TAB--><i><a name="Title:gHits"></a></i>
+</pre>
+<!--END-->
+<hr>
+<!--DESCRIPTION--><h2><a name="Event:description">Class Description</a></h2>
+<pre>   <a href="./Event.html">Event</a>
+
+
+
+
+</pre><hr>
+<!--FUNCTION--> <a name="Event:Event" href="src/Event.cxx.html#Event:Event">Event</a>()
+// Create an <a href="./Event.html">Event</a> object.
+// When the constructor is invoked for the first time, the class static
+// variable <a href="./Event.html#Event:gHits">gHits</a> is 0 and the <a href="http://root.cern.ch/root/html/TClonesArray.html">TClonesArray</a> <a href="./Event.html#Event:gHits">gHits</a> is created.
+<br>
+<hr>
+<!--FUNCTION--> <a name="Event:Event" href="src/Event.cxx.html#Event:Event">Event</a>(const <a href="./HldEvent.html">HldEvent</a>&amp; HldEvt)
+<br>
+<hr>
+<!--FUNCTION--> <a name="Event:~Event" href="src/Event.cxx.html#Event:~Event">~Event</a>()
+<br>
+<hr>
+<!--FUNCTION--><a href="ListOfTypes.html#void">void</a> <a name="Event:clearAll" href="src/Event.cxx.html#Event:clearAll">clearAll</a>()
+//
+<br>
+<hr>
+<!--FUNCTION--><a href="ListOfTypes.html#Bool_t">Bool_t</a> <a name="Event:fill" href="src/Event.cxx.html#Event:fill">fill</a>(const <a href="./HldEvent.html">HldEvent</a>&amp; HldEvt)
+//what about some error's check
+<br>
+<hr>
+<!--FUNCTION--><a href="./Hit.html">Hit</a>* <a name="Event:addHit" href="src/Event.cxx.html#Event:addHit">addHit</a>()
+<br>
+<br><br><br>
+<h3>Inline Functions</h3>
+<hr>
+<pre>
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Event:getEvtSize" href="event_wk.h">getEvtSize</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Event:getEvtDecoding" href="event_wk.h">getEvtDecoding</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Event:getEvtId" href="event_wk.h">getEvtId</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Event:getEvtSeqNr" href="event_wk.h">getEvtSeqNr</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Event:getEvtDate" href="event_wk.h">getEvtDate</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Event:getEvtTime" href="event_wk.h">getEvtTime</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Event:getEvtYear" href="event_wk.h">getEvtYear</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Event:getEvtMonth" href="event_wk.h">getEvtMonth</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Event:getEvtDay" href="event_wk.h">getEvtDay</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Event:getEvtHour" href="event_wk.h">getEvtHour</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Event:getEvtMinute" href="event_wk.h">getEvtMinute</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Event:getEvtSecond" href="event_wk.h">getEvtSecond</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Event:getEvtPad" href="event_wk.h">getEvtPad</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Event:getEvtDataSize" href="event_wk.h">getEvtDataSize</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Event:getEvtPaddedSize" href="event_wk.h">getEvtPaddedSize</a>()
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="ListOfTypes.html#Int_t">Int_t</a> <a name="Event:getSubEvtId" href="event_wk.h">getSubEvtId</a>()
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Event:setSubEvtId" href="event_wk.h">setSubEvtId</a>(<a href="ListOfTypes.html#Int_t">Int_t</a> sb = 0)
+<!--INLINE FUNCTION--><!--TAB6-->            <a href="http://root.cern.ch/root/html/TClass.html">TClass</a>* <a name="Event:Class" href="event_wk.h">Class</a>()
+<!--INLINE FUNCTION--><!--TAB6-->            <a href="http://root.cern.ch/root/html/TClass.html">TClass</a>* <a name="Event:IsA" href="event_wk.h">IsA</a>() const
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Event:ShowMembers" href="event_wk.h">ShowMembers</a>(<a href="http://root.cern.ch/root/html/TMemberInspector.html">TMemberInspector</a>&amp; insp, <a href="ListOfTypes.html#char">char</a>* parent)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Event:Streamer" href="event_wk.h">Streamer</a>(<a href="http://root.cern.ch/root/html/TBuffer.html">TBuffer</a>&amp; b)
+<!--INLINE FUNCTION--><!--TAB6-->               <a href="ListOfTypes.html#void">void</a> <a name="Event:StreamerNVirtual" href="event_wk.h">StreamerNVirtual</a>(<a href="http://root.cern.ch/root/html/TBuffer.html">TBuffer</a>&amp; b)
+<!--INLINE FUNCTION--><!--TAB6-->              <a href="./Event.html">Event</a> <a name="Event:Event" href="event_wk.h">Event</a>(const <a href="./Event.html">Event</a>&amp;)
+<!--INLINE FUNCTION--><!--TAB6-->             <a href="./Event.html">Event</a>&amp; <a name="Event:operator=" href="event_wk.h">operator=</a>(const <a href="./Event.html">Event</a>&amp;)
+</pre>
+
+<hr><br>
+<!--SIGNATURE-->
+<em>Author: <a href="wojciech.krzemien@if.uj.edu.pl">Wojciech Krzemien</a> 12.10.06</em><br>
+<em>Last update: Tue Oct 24 15:59:12 2006</em><br>
+<br>
+<hr>
+<center>
+<address>
+<a href="http://root.cern.ch/root/Welcome.html">ROOT page</a> - <a href="ClassIndex.html">Class index</a> - <a href="ClassHierarchy.html">Class Hierarchy</a> - <a href="#TopOfPage">Top of the page</a><br>
+</address>
+</center>
+<hr>
+<address>
+This page has been automatically generated. If you have any comments or suggestions about the page layout send a mail to <a href="mailto:rootdev@root.cern.ch">ROOT support</a>, or contact <a href="mailto:rootdev@root.cern.ch">the developers</a> with any questions or problems regarding ROOT.
+</address>
+</body>
+</html>
