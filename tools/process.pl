@@ -23,7 +23,7 @@ my $size = scalar(@data);
 for(my $i = 0; $i < $size; $i++) {
 	print "Creating thread for $data[$i]\n\n";
 
-	$threads[$i] = threads->create(sub { `root -l -b -q 'process.c("$data[$i]", 1000000, 32768, 95, "1234|ffff")'`});
+	$threads[$i] = threads->create(sub { `root -l -b -q 'process.c("$data[$i]", $evtNum, $subId, $refCh, "$endp")'`});
 }
 
 for(my $i = 0; $i < $size; $i++) {
