@@ -1,0 +1,19 @@
+Instructions:
+
+- download and unpack all files
+- type make in Unpacker/Unpacker directory
+- switch to tools directory
+- run process.pl script
+
+process.pl
+The script to run Unpacker in batch mode for a predefined list of .hld files
+Generates .root files in the same place where .hld are
+Create a text file with .hld files list, one file with full path per line
+run: perl process.pl A B C D E
+where:
+A - file with list of .hld files
+B - max number of event to process
+C - address of the HUB Addon to which TRBs are connected
+D - number of the reference channel
+E - list of TRB addresses in format "abcd|0123|6789"
+
