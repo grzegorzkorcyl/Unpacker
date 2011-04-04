@@ -47,7 +47,8 @@ Unpacker::Unpacker()
 //______________________________________________________________________________
 //gk change to accept multiple fpga_codes
 //Unpacker::Unpacker(const char* name,Int_t nEvt /*=50000*/,Int_t subEvtId /*=802*/,Int_t refChannel/*=95*/, Int_t fpga_code/*=65535*/)
-Unpacker::Unpacker(const char* name,Int_t nEvt /*=50000*/,Int_t subEvtId /*=802*/,Int_t refChannel/*=95*/, const char* fpga_code/*=65535*/)
+//Unpacker::Unpacker(const char* name,Int_t nEvt /*=50000*/,Int_t subEvtId /*=802*/,Int_t refChannel/*=95*/, const char* fpga_code/*=65535*/)
+Unpacker::Unpacker(const char* name,Int_t nEvt /*=50000*/,const char* subEvtId /*=802*/,Int_t refChannel/*=95*/, const char* fpga_code/*=65535*/)
 //if nEvt is equal 0 there will be no processing -> one can use eventLoop()
 {
   
@@ -62,10 +63,10 @@ Unpacker::Unpacker(const char* name,Int_t nEvt /*=50000*/,Int_t subEvtId /*=802*
   }
   */
   
-  this->subEvtId=subEvtId;	
+  this->subEvtId= HexStrToInt(subEvtId);	
   setInputFile(name);
   EventNr=0;
-  pEvent= new HldEvent(inputFile.c_str(),subEvtId,fpga_code); 
+  pEvent= new HldEvent(inputFile.c_str(), HexStrToInt(subEvtId), fpga_code); 
   pRootFile=0;
 //  this->fpga_code=fpga_code;
  if(nEvt>0)
@@ -75,6 +76,7 @@ Unpacker::Unpacker(const char* name,Int_t nEvt /*=50000*/,Int_t subEvtId /*=802*
   cout<<"Reference channel is set in the event_wk.cc in the  Event::clearAll()"<<endl;
 
 }
+
 //______________________________________________________________________________
 Unpacker::~Unpacker() 
 {
