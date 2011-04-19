@@ -17,3 +17,8 @@ C - address of the HUB Addon to which TRBs are connected
 D - number of the reference channel
 E - list of TRB addresses in format "abcd|0123|6789"
 
+example:
+perl process.pl files.txt 1000 "8000" 95 "1234|3200"
+
+It will process 1000 events from all files listed in files.txt, looking for subevents coming from HUB board with address 0x8000 for specific TRBs with addresses 0x1234 and 0x3200 with reference channel number set to 95
+
