@@ -543,7 +543,7 @@ Int_t HldEvent::decode(void)
 		currentFpga = -1;
 		// loop over registered endpoint addresses
 		for(int i = 0; i < fpgasNum; i++) {
-		  cerr<<"FPGA: "<<i<<endl;
+		  //cerr<<"FPGA: "<<i<<endl;
 			// found a matching one
 			if (((*data) & 0xffff) == fpgasAddr[i]) {
 				endOfSubevent = data + (((*data) & 0xffff0000) >> 16) + 1;
@@ -579,7 +579,8 @@ Int_t HldEvent::decode(void)
     {// Raw TDC Data
       case 0:
       {// Group Header
-
+      // gk reset tdc  counter for each TRB board
+nCountTDC = 0;
       }
       case 2:
       {// TDC Header
@@ -671,8 +672,9 @@ Int_t HldEvent::decode(void)
 	Int_t nData, nChannel, nWidth;
 	nChannel = (dataword >> 19) & 0x1f; // decode channel
 	// shift by tdc number and endpoint number
-	nChannel += TdcId * 32;
-	//nChannel += (TdcId * 32) + (currentFpga * 128);
+//	nChannel += TdcId * 32;
+//cerr<<nChannel<<" "<<TdcId<<" "<<currentFpga<<" ";
+	nChannel += (TdcId * 32) + (currentFpga * 128);
 //	printf("HIT: %d\n", nChannel);
 	
 	//printf("channel %d\n", nChannel);
@@ -724,8 +726,8 @@ Int_t HldEvent::decode(void)
 	nChannel = (dataword >> 19) & 0x1f; // decode channel
 
 	//shift by tdc number and endpoint number
-	nChannel += TdcId * 32;
-	//nChannel += (TdcId * 32) + (currentFpga * 128);
+	// nChannel += TdcId * 32;
+	nChannel += (TdcId * 32) + (currentFpga * 128);
 //	printf("HIT: %d\n", nChannel);
 	
 		//printf("channel %d\n", nChannel);
