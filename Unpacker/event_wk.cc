@@ -58,7 +58,7 @@ void Event::clearAll()
     Hits->Clear();
     totalNHits = 0;
     errors_per_event = 0;
-    setReferenceChannel(127);
+    //setReferenceChannel(127);  -- gk 18.05.2011
     setReferenceTime(-100000);
     EvtHdr.clearAll();
 

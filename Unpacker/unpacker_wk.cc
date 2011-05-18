@@ -42,6 +42,7 @@ Unpacker::Unpacker()
    pRootFile=0;
    subEvtId=0;
    fpga_code=0;
+   refCh = -1;
 }
 
 //______________________________________________________________________________
@@ -62,7 +63,8 @@ Unpacker::Unpacker(const char* name,Int_t nEvt /*=50000*/,const char* subEvtId /
 	  NoWhite+=Tmp;
   }
   */
-  
+  refCh = -1;
+  refCh = refChannel;
   this->subEvtId= HexStrToInt(subEvtId);	
   setInputFile(name);
   EventNr=0;
@@ -210,6 +212,9 @@ Bool_t Unpacker::eventLoop(Int_t nbEvt,Int_t startEv)
 	    break;
          }
          event= new Event(*pEvent);
+	 event->setReferenceChannel(refCh);
+	 
+	 //cerr<<event->getReferenceChannel()<<" | "<<refCh<<endl;
          //cout<<"Event number: "<<i <<endl;   
    //cout<<"Leading time: "<<event->trbLeadingTime[3][0]<<endl;
    //cout<<"Trailing time: "<<event->trbTrailingTime[3][0]<<endl;

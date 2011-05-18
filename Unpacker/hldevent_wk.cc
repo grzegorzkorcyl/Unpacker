@@ -276,7 +276,7 @@ void HldEvent::clearAll(void)
 	    LeadingTime[i][k] = -1000000;
 	    WidthTime[i][k] = -1000000;
 	    TrailingTime[i][k] = -1000000;
-	    trbADC[i][k] = -1;
+	    trbADC[i][k] = -10;
 	    }
 	LeadingMult[i] = 0;
 	WidthMult[i] = 0;

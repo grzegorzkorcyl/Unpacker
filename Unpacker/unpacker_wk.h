@@ -73,6 +73,7 @@ UInt_t HexStrToInt(const char* str) {
  TFile* pRootFile; // pointer to TFile with the output tree
  string inputFile; //wk 28.05
  Int_t fpga_code; // address of the data source (e.g. given fpga ) decoded from hld file 
+ Int_t refCh;
  
 public:
  ClassDef(Unpacker,1);
