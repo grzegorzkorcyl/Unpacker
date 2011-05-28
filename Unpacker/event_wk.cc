@@ -35,9 +35,12 @@ Event::Event() :
     }
 
 //______________________________________________________________________________
-Event::Event(const HldEvent& HldEvt) :
+Event::Event(const HldEvent& HldEvt, Int_t refCh) :
     kMaxMult(HldEvt.getkMaxMult()), kMaxChannelNr(HldEvt.getkMaxChannelNr())
     {
+      
+      setReferenceChannel(refCh);
+      
     if (!gHits)
 	gHits = new TClonesArray("Hit", 1000);
     Hits = gHits;
@@ -85,6 +88,8 @@ Bool_t Event::fill(const HldEvent& HldEvt)
     Int_t widTime;
     Int_t trailTime;
     Int_t leadMult;
+    
+        //cerr<<"front refCh: "<<getReferenceChannel()<<endl;
 
     /*
      for(Int_t i=0; i<kMaxChannelNr; i++){
@@ -144,6 +149,7 @@ Bool_t Event::fill(const HldEvent& HldEvt)
 
     //wk if is set to use reference time -add it !!!!
     //cout <<"trbLeadingTime[getReferenceChannel()][0]: " <<trbLeadingTime[getReferenceChannel()][0]<<endl;
+    //cerr<<"refCh: "<<getReferenceChannel()<<endl;
     setReferenceTime(HldEvt.getLeadingTime(getReferenceChannel(), 0));
     setErrors_per_event(HldEvt.errors_per_event);
 

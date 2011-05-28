@@ -19,7 +19,7 @@ using namespace std;
 
 ClassImp(HldEvent)
 
-const Int_t kMaxSubEvtId = 999;
+// const Int_t kMaxSubEvtId = 999; not used anymore
 
 //______________________________________________________________________________
 Bool_t HldEvent::setFile(const Text_t *name)
@@ -276,7 +276,7 @@ void HldEvent::clearAll(void)
 	    LeadingTime[i][k] = -1000000;
 	    WidthTime[i][k] = -1000000;
 	    TrailingTime[i][k] = -1000000;
-	    trbADC[i][k] = -10;
+	    trbADC[i][k] = -1;
 	    }
 	LeadingMult[i] = 0;
 	WidthMult[i] = 0;

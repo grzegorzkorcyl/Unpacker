@@ -37,7 +37,7 @@ class Event :public TObject
  public:
 
  Event();
- Event(const HldEvent& HldEvt);
+ Event(const HldEvent& HldEvt, Int_t refCh);
  virtual ~Event();
  
  protected:

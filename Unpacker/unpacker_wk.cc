@@ -204,15 +204,18 @@ Bool_t Unpacker::eventLoop(Int_t nbEvt,Int_t startEv)
 //  cout<<"to zwraca Branch(): "<<test<<endl;	  
 
       for(Int_t i=0; i< nbEvt; i++)
-      {       
+      {    
+	  //cerr<<i<<endl;
          if(!(pEvent->execute()))
          {
 	    cout<<"END OF FILE"<<endl;
 	    cout<<"Number of Events: "<<EventNr<<endl;
 	    break;
          }
-         event= new Event(*pEvent);
-	 event->setReferenceChannel(refCh);
+	 //cerr<<"Un ref ch: "<<refCh<<endl;
+         event= new Event(*pEvent, refCh);
+	 //event->setReferenceChannel(refCh);
+	 //cerr<<"Un get ref ch: "<<event->getReferenceChannel()<<endl;
 	 
 	 //cerr<<event->getReferenceChannel()<<" | "<<refCh<<endl;
          //cout<<"Event number: "<<i <<endl;   
