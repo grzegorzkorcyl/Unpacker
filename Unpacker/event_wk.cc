@@ -101,6 +101,9 @@ Bool_t Event::fill(const HldEvent& HldEvt)
      trbTrailingMult[i]=HldEvt.getTrailingMult(i);
      }
      */
+    
+    bool multihitReference = false;
+    
     for (Int_t i = 0; i < kMaxChannelNr; i++)
 	{
 	leadMult = HldEvt.getLeadingMult(i);
@@ -111,6 +114,12 @@ Bool_t Event::fill(const HldEvent& HldEvt)
 	pCurrentHit = addHit();
 	pCurrentHit->setChannel(i);
 	pCurrentHit->setTDC(i); //wk !!!change it
+	
+	// gk check if there was more hits on reference channel
+	if (leadMult > 1 && i == getReferenceChannel()) {
+	  multihitReference = true;
+	}
+	  
 	//end wk
 	// fill time info for channel: TDC, channel
 	// Do it only for firs 4 hits (HHodoRaw can handle 4 hits)
@@ -127,6 +136,21 @@ Bool_t Event::fill(const HldEvent& HldEvt)
 		{
 		pCurrentHit->setLeadTime1(leadTime);
 		pCurrentHit->setTrailTime1(trailTime);
+		}
+	    else if (chmult == 1)
+		{
+		pCurrentHit->setLeadTime2(leadTime);
+		pCurrentHit->setTrailTime2(trailTime);
+		}
+	    else if (chmult == 2)
+		{
+		pCurrentHit->setLeadTime3(leadTime);
+		pCurrentHit->setTrailTime3(trailTime);
+		}
+	    else if (chmult == 3)
+		{
+		pCurrentHit->setLeadTime4(leadTime);
+		pCurrentHit->setTrailTime4(trailTime);
 		}
 	    //end wk 14.03
 	    //pCurrentHit->fillTimeAndWidth(trbLeadingTime[ i ][ chmult ],0/* wk: trbADC [ i ][ chmult ]*/) ;
@@ -150,7 +174,65 @@ Bool_t Event::fill(const HldEvent& HldEvt)
     //wk if is set to use reference time -add it !!!!
     //cout <<"trbLeadingTime[getReferenceChannel()][0]: " <<trbLeadingTime[getReferenceChannel()][0]<<endl;
     //cerr<<"refCh: "<<getReferenceChannel()<<endl;
-    setReferenceTime(HldEvt.getLeadingTime(getReferenceChannel(), 0));
+    
+    
+    // gk selection of the hit that came within a time range on all reference channels inh case of multihit
+    
+    
+    if(multihitReference == true) {
+     int t = 128 * (getReferenceChannel() / 128) - 1;  // get the initial channel of trb with selected reference channel
+     Int_t refTimesMean = 0;
+     
+     int mults[4] = {-1, -1, -1, -1};
+     Int_t vals[4] = {0, 0, 0, 0};
+     Int_t temp = 0;
+     
+     for(Int_t i = 0; i < 4; i++) {  // iterate through multiplicity of first ref channel
+	
+	
+	mults[0] = i;
+	mults[1] = -1;
+	mults[2] = -1;
+	mults[3] = -1;
+	vals[0] = HldEvt.getLeadingTime(t + 32, i);
+	    
+	for(Int_t j = 0; j < 4; j++) {
+	    temp = HldEvt.getLeadingTime(t + 64, j);
+	    if (temp < vals[0] + 200 && temp > vals[0] - 200) {
+		mults[1] = j;
+		vals[1] = temp;
+	    }
+	}
+	
+	for(Int_t j = 0; j < 4; j++) {
+	    temp = HldEvt.getLeadingTime(t + 96, j);
+	    if (temp < vals[0] + 200 && temp > vals[0] - 200) {
+		mults[2] = j;
+		vals[2] = temp;
+	    }
+	}
+	
+	for(Int_t j = 0; j < 4; j++) {
+	    temp = HldEvt.getLeadingTime(t + 128, j);
+	    if (temp < vals[0] + 200 && temp > vals[0] - 200) {
+		mults[3] = j;
+		vals[3] = temp;
+	    }
+	}
+	
+	if (mults[1] != -1 && mults[2] != -1 && mults[3] != -1) {
+	  break;
+	}
+     }
+     cerr<<"Found multihit on reference channel, selecting hit "<<mults[getReferenceChannel() / 128]<<endl;
+     setReferenceTime(HldEvt.getLeadingTime(getReferenceChannel(), mults[getReferenceChannel() / 128]));
+    }
+    else {
+      setReferenceTime(HldEvt.getLeadingTime(getReferenceChannel(), 0));
+    }
+    
+    
+    
     setErrors_per_event(HldEvt.errors_per_event);
 
     return kTRUE;

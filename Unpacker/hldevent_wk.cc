@@ -315,6 +315,8 @@ Bool_t HldEvent::fill_lead(Int_t ch, Int_t time)
     Int_t leadMult = LeadingMult[ch]; //Leading Multiplicity
 
 
+//cerr<<widMult<<" | "<<leadMult<<endl;
+
     LeadingMult[ch]++;
 
     if (leadMult < kMaxMult)
@@ -665,7 +667,6 @@ nCountTDC = 0;
       case 4:
       {// TDC DATA Leading and width
 
-	
 	if(!quietMode)
 	      printf("TRB unpack: Found TDC %d Lead Data $%08X\n",TdcId,dataword);
 	
@@ -718,7 +719,6 @@ nCountTDC = 0;
       }
       case 5:
       {// TDC DATA Trailing
-	
 	if(!quietMode)
 	  printf("TRB unpack: Found TDC %d Trail Data $%08X\n",TdcId,dataword);
 	
