@@ -321,14 +321,14 @@ Bool_t HldEvent::fill_lead(Int_t ch, Int_t time)
 
     if (leadMult < kMaxMult)
 	{
-	if (leadMult <= widMult + 1)
-	    {
+	//if (leadMult <= widMult + 1)
+	//   {
 	    LeadingTime[ch][leadMult] = time;
-	    }
+	    /*}
 	else
 	    {
 	    return kFALSE;
-	    }
+	    }*/
 	}
     return ((leadMult + 1) <= kMaxMult);
 
@@ -843,9 +843,10 @@ HldEvent::HPP const HldEvent::getpSubEvt(void)
 Int_t HldEvent::getLeadingTime(Int_t channel, Int_t mult) const
 //______________________________________________________________________________
     {
-
-    if ((channel < kMaxChannelNr) && (mult < kMaxMult))
+    if ((channel < kMaxChannelNr) && (mult < kMaxMult)) {
 	return LeadingTime[channel][mult];
+	
+    }
     return -1; //channel or multiplicity out of range
     }
 

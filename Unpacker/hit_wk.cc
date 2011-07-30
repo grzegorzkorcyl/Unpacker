@@ -5,6 +5,7 @@
 
 
 #include "hit_wk.h"
+#include <iostream>
 //______________________________________________________________________________
 //   Hit  
 //
@@ -130,7 +131,8 @@ Bool_t Hit::fillTimeAndWidth(const Int_t time,const Int_t width) {
         break;
     default:
        if( nHits>=4) nHits++;// continue counting Hits ...
-       return kFALSE;
+	break;
+       //return kFALSE;
   }
   return kTRUE;
  
@@ -141,6 +143,9 @@ Bool_t Hit::fill_lead(const Int_t time) {
   // Stores the given time in the next data element time*
   // and sets the multiplicity.
   // Return kFALSE if 4 hits are already stored. 
+  
+  cerr<<"Fill_lead"<<endl;
+  
   switch (nHits) {
     case 0:
 //       time1 = time;
@@ -160,7 +165,8 @@ Bool_t Hit::fill_lead(const Int_t time) {
       break;
 		default:
 			if( nHits>=4) nHits++;// continue counting Hits ...
-      return kFALSE;
+      break;
+      //return kFALSE;
   }
   return kTRUE;
 }

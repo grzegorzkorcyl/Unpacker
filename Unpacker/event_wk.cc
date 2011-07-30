@@ -107,6 +107,8 @@ Bool_t Event::fill(const HldEvent& HldEvt)
     for (Int_t i = 0; i < kMaxChannelNr; i++)
 	{
 	leadMult = HldEvt.getLeadingMult(i);
+    
+	pCurrentHit->setNHits(leadMult);
 
 	if (leadMult < 1)
 	    continue; //Leading Time data for this channel does not exist
