@@ -517,6 +517,9 @@ Int_t HldEvent::decode(void)
   // 	}
 
   nSizeCounter++;// First one already processed
+  
+  
+  bool foundLeadingEdge = false;
 
   while (data < end)
   {
@@ -710,9 +713,23 @@ nCountTDC = 0;
 	nData = dataword & 0x7ffff; // decode 19bit data
 	// this is for SINGLE LEADING/TRAILING EDGE measurements only!!!
 	//wk added wypelniane lead
-	if (!fill_lead(nChannel, nData))
-	{
-	//   cout<< "Leading without Trailing or Too many Hits"<<endl;
+	
+	// gk in case the search window is defined
+	if (nData >= minWindow && nData <= maxWindow && minWindow != -100000) {
+	  if (!fill_lead(nChannel, nData))
+	  {
+	  //   cout<< "Leading without Trailing or Too many Hits"<<endl;
+	  }
+	  foundLeadingEdge = true;
+	}
+	// operate without search window
+	else if(minWindow == -100000) {
+	  
+	  if (!fill_lead(nChannel, nData))
+	  {
+	  //   cout<< "Leading without Trailing or Too many Hits"<<endl;
+	  }
+	  foundLeadingEdge = true;
 	}
 	//}
 	break;
@@ -744,10 +761,13 @@ nCountTDC = 0;
 	  printf("(Chan,Data) %3d, %d\n",nChannel,nData);
 	
 	// this is for SINGLE LEADING/TRAILING EDGE measurements only!!!
-	if (!fill_trail(nChannel, nData))
-	{
+	if (foundLeadingEdge == true) {
+	  if (!fill_trail(nChannel, nData))
+	  {
 
-	//	cout <<"Trailing without Leading or Too many Hits"<<endl;
+	  //	cout <<"Trailing without Leading or Too many Hits"<<endl;
+	  }
+	  foundLeadingEdge = false;
 	}
 	break;
       }

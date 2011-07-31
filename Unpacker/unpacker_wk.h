@@ -38,7 +38,9 @@ public:
  // the order of endpoints then defines the channel mapping on histogram
  //Unpacker(const char* name,Int_t nEvt=50000,Int_t subEvtId=803,Int_t referenceChannel=95,Int_t fpga_code=65535);
  //Unpacker(const char* name,Int_t nEvt=50000,Int_t subEvtId=803,Int_t referenceChannel=95, const char* fpga_code = "");
- Unpacker(const char* name,Int_t nEvt=50000,const char* subEvtId="",Int_t referenceChannel=95, const char* fpga_code = ""); 
+//  Unpacker(const char* name,Int_t nEvt=50000,const char* subEvtId="",Int_t referenceChannel=95, const char* fpga_code = ""); 
+ //gk second constructor gives the possibility to set the search window instead of collecting all hits
+ Unpacker(const char* name,Int_t nEvt=50000,const char* subEvtId="",Int_t referenceChannel=95, const char* fpga_code = "", Int_t min = -100000, Int_t max = -100000);
  ~Unpacker();
  
  

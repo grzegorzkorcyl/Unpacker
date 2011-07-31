@@ -87,19 +87,52 @@ UInt_t HexStrToInt(const char* str) {
      }
    }
    
-   /*for(int i = 0; i < fpgasNum; i++) {
-      printf("%d\n", fpgasAddr[i]);
-   }
+   minWindow = -100000;
+   maxWindow = -100000;
    
-   fflush(stdout);*/
-   
-   
-   //this->fpgaAddr=fpgaAddr;
    setFile(name);
    setQuietMode();
    setSubEvtId(subId);
    init();
  }
+ 
+ // gk
+  HldEvent(const char* name,Int_t subId, const char* fpgaAddr, Int_t min, Int_t max): pData(0) {    // read from file
+   file = 0;	//wk added 25.05.07
+   fpgasNum = 0;
+   
+   // gk retreive fpga addresses
+   char temp[4];
+   UInt_t ctr = 0;
+   while (true) {
+     
+     if (fpgaAddr[ctr] == NULL) {
+       fpgasAddr[fpgasNum] = HexStrToInt(temp);
+       fpgasNum++; 
+       break;
+     }
+     else if (fpgaAddr[ctr] == '|') {
+       fpgasAddr[fpgasNum] = HexStrToInt(temp);
+       ctr++;
+       fpgasNum++;
+     }
+     else {
+      temp[(ctr - fpgasNum) % 4] = fpgaAddr[ctr];
+      ctr++;
+     }
+   }
+   
+   minWindow = min;
+   maxWindow = max;
+   
+   setFile(name);
+   setQuietMode();
+   setSubEvtId(subId);
+   init();
+ }
+ 
+ 
+ 
 ~HldEvent() {
    if (file) delete file;
    delete[] pData;
@@ -221,6 +254,10 @@ public:
   Int_t debugFlag1; // used for special purpuses
                     // will be removed later
   Bool_t quietMode; //! do not print errors!
+  
+  //gk
+  Int_t minWindow;
+  Int_t maxWindow;
 
 public:
  //wk added 04.02.07

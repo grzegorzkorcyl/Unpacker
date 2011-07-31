@@ -49,26 +49,44 @@ Unpacker::Unpacker()
 //gk change to accept multiple fpga_codes
 //Unpacker::Unpacker(const char* name,Int_t nEvt /*=50000*/,Int_t subEvtId /*=802*/,Int_t refChannel/*=95*/, Int_t fpga_code/*=65535*/)
 //Unpacker::Unpacker(const char* name,Int_t nEvt /*=50000*/,Int_t subEvtId /*=802*/,Int_t refChannel/*=95*/, const char* fpga_code/*=65535*/)
-Unpacker::Unpacker(const char* name,Int_t nEvt /*=50000*/,const char* subEvtId /*=802*/,Int_t refChannel/*=95*/, const char* fpga_code/*=65535*/)
-//if nEvt is equal 0 there will be no processing -> one can use eventLoop()
+// Unpacker::Unpacker(const char* name,Int_t nEvt /*=50000*/,const char* subEvtId /*=802*/,Int_t refChannel/*=95*/, const char* fpga_code/*=65535*/)
+// //if nEvt is equal 0 there will be no processing -> one can use eventLoop()
+// {
+//   
+//   /*stringstream Name(name);
+//   string Tmp,NoWhite;
+//   //it strips all whitespaces from name
+//   while(!Name.eof())
+//   {
+// 	  Tmp.clear();
+// 	  Name>>skipws >>Tmp;
+// 	  NoWhite+=Tmp;
+//   }
+//   */
+//   refCh = -1;
+//   refCh = refChannel;
+//   this->subEvtId= HexStrToInt(subEvtId);	
+//   setInputFile(name);
+//   EventNr=0;
+//   pEvent= new HldEvent(inputFile.c_str(), HexStrToInt(subEvtId), fpga_code); 
+//   pRootFile=0;
+// //  this->fpga_code=fpga_code;
+//  if(nEvt>0)
+//   {
+//     eventLoop(nEvt);
+//   }
+//   cout<<"Reference channel is set in the event_wk.cc in the  Event::clearAll()"<<endl;
+// 
+// }
+
+Unpacker::Unpacker(const char* name,Int_t nEvt, const char* subEvtId, Int_t refChannel, const char* fpga_code, Int_t min, Int_t max)
 {
-  
-  /*stringstream Name(name);
-  string Tmp,NoWhite;
-  //it strips all whitespaces from name
-  while(!Name.eof())
-  {
-	  Tmp.clear();
-	  Name>>skipws >>Tmp;
-	  NoWhite+=Tmp;
-  }
-  */
   refCh = -1;
   refCh = refChannel;
   this->subEvtId= HexStrToInt(subEvtId);	
   setInputFile(name);
   EventNr=0;
-  pEvent= new HldEvent(inputFile.c_str(), HexStrToInt(subEvtId), fpga_code); 
+  pEvent= new HldEvent(inputFile.c_str(), HexStrToInt(subEvtId), fpga_code, min, max); 
   pRootFile=0;
 //  this->fpga_code=fpga_code;
  if(nEvt>0)
@@ -76,7 +94,6 @@ Unpacker::Unpacker(const char* name,Int_t nEvt /*=50000*/,const char* subEvtId /
     eventLoop(nEvt);
   }
   cout<<"Reference channel is set in the event_wk.cc in the  Event::clearAll()"<<endl;
-
 }
 
 //______________________________________________________________________________
