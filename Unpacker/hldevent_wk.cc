@@ -315,10 +315,9 @@ Bool_t HldEvent::fill_lead(Int_t ch, Int_t time)
     Int_t leadMult = LeadingMult[ch]; //Leading Multiplicity
 
 
-//cerr<<widMult<<" | "<<leadMult<<endl;
+//cerr<<"fill_lead: "<<leadMult<<" on ch "<<ch<<endl;
 
     LeadingMult[ch]++;
-
     if (leadMult < kMaxMult)
 	{
 	//if (leadMult <= widMult + 1)
@@ -490,7 +489,7 @@ Int_t HldEvent::decode(void)
   UInt_t* data = pSubEvt->getData();
   UInt_t* end = pSubEvt->getEnd();
 
-  UInt_t currentFpga = -1;
+  Int_t currentFpga = -1;
 
   // gk 02.12.10
   // skip the first 32b. word which is hub header
@@ -710,6 +709,9 @@ nCountTDC = 0;
 	else
 	{
 	*/
+	
+	//if (nChannel == 351) cerr<<"Found leading edge on ch 351"<<endl;
+	
 	nData = dataword & 0x7ffff; // decode 19bit data
 	// this is for SINGLE LEADING/TRAILING EDGE measurements only!!!
 	//wk added wypelniane lead

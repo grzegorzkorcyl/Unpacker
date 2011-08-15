@@ -31,7 +31,7 @@ class Hit:public TObject
  Hit(Int_t ch,Int_t tdc)
  {
 	 setChannel(ch);
-	 setTDC(tdc);   
+	 setTDC(tdc);
  }
  
 /* 

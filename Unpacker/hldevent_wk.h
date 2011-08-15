@@ -36,9 +36,9 @@ private:
  Bool_t isWritable; // flag used for HLD output
 
 // gk
- UInt_t	fpgaAddr; //number used in the decode() to select the subevents from given fpga
- UInt_t fpgasAddr[10];
- UInt_t fpgasNum;
+ Int_t	fpgaAddr; //number used in the decode() to select the subevents from given fpga
+ Int_t fpgasAddr[10];
+ Int_t fpgasNum;
 
 public:
  

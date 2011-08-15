@@ -108,32 +108,34 @@ Bool_t Hit::fillTimeAndWidth(const Int_t time,const Int_t width) {
   // Stores the given time and width in the next data element time* and width*
   // and sets the multiplicity.
   // Return kFALSE if 4 hits are already stored.
-  switch (nHits) {
-     case 0:
-//         time1 = time;
-//         width1 = width;
-        nHits++;
-        break;
-     case 1:
-//         time2 = time;
-//         width2 = width;
-        nHits++;
-        break;
-     case 2:
-//         time3 = time;
-//         width3 = width;
-        nHits++;
-        break;
-     case 3:
-//         time4 = time;
-//         width4 = width;
-        nHits++;
-        break;
-    default:
-       if( nHits>=4) nHits++;// continue counting Hits ...
-	break;
-       //return kFALSE;
-  }
+  
+  //cerr<<"bla"<<endl;
+//   switch (nHits) {
+//      case 0:
+// //         time1 = time;
+// //         width1 = width;
+//         nHits++;
+//         break;
+//      case 1:
+// //         time2 = time;
+// //         width2 = width;
+//         nHits++;
+//         break;
+//      case 2:
+// //         time3 = time;
+// //         width3 = width;
+//         nHits++;
+//         break;
+//      case 3:
+// //         time4 = time;
+// //         width4 = width;
+//         nHits++;
+//         break;
+//     default:
+//        if( nHits>=4) nHits++;// continue counting Hits ...
+// 	break;
+//        //return kFALSE;
+//   }
   return kTRUE;
  
 }
@@ -146,7 +148,7 @@ Bool_t Hit::fill_lead(const Int_t time) {
   
   cerr<<"Fill_lead"<<endl;
   
-  switch (nHits) {
+  /*switch (nHits) {
     case 0:
 //       time1 = time;
       nHits++;
@@ -167,7 +169,7 @@ Bool_t Hit::fill_lead(const Int_t time) {
 			if( nHits>=4) nHits++;// continue counting Hits ...
       break;
       //return kFALSE;
-  }
+  }*/
   return kTRUE;
 }
 

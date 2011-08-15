@@ -80,7 +80,7 @@ void Event::clearAll()
 Bool_t Event::fill(const HldEvent& HldEvt)
 //what about some error's check
     {
-    Hit* pCurrentHit;
+    Hit* pCurrentHit = new Hit();
     EvtHdr.fill(HldEvt);
     setSubEvtId(HldEvt.getSubEvtId());
 
@@ -108,14 +108,16 @@ Bool_t Event::fill(const HldEvent& HldEvt)
 	{
 	leadMult = HldEvt.getLeadingMult(i);
     
-	pCurrentHit->setNHits(leadMult);
-
+      //if (i == 351 && leadMult > 1) cerr<<"Mult from event_wk: "<<HldEvt.getLeadingMult(i)<<" "<<pCurrentHit->getNHits()<<endl;
+      
 	if (leadMult < 1)
 	    continue; //Leading Time data for this channel does not exist
 	//wk to set
 	pCurrentHit = addHit();
 	pCurrentHit->setChannel(i);
 	pCurrentHit->setTDC(i); //wk !!!change it
+	
+	pCurrentHit->setNHits(leadMult);
 	
 	// gk check if there was more hits on reference channel
 	if (leadMult > 1 && i == getReferenceChannel()) {
@@ -128,6 +130,10 @@ Bool_t Event::fill(const HldEvent& HldEvt)
 	for (Int_t chmult = 0; (chmult < leadMult && chmult < 4); chmult++)
 	    {
 	    leadTime = HldEvt.getLeadingTime(i, chmult);
+	
+	
+	//cerr<<"fill: "<<chmult<<" "<<leadTime<<endl;
+	    
 	    trailTime = HldEvt.getTrailingTime(i, chmult);
 	    widTime = HldEvt.getWidthTime(i, chmult);
 	    //moze powinno sie sprawdzac czy lead i trail sa ustawione
