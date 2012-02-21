@@ -10,7 +10,9 @@ my $refCh  = $ARGV[3];
 my $endp   = $ARGV[4];
 my $minWin = $ARGV[5];
 my $maxWin = $ARGV[6];
-
+my $quietMode = $ARGV[7];
+my $fullSetup = $ARGV[8];
+my $vhrMode   = $ARGV[9];
 
 my @threads;
 
@@ -26,10 +28,10 @@ for(my $i = 0; $i < $size; $i++) {
 	print "Creating thread for $data[$i]\n\n";
 
 	if (!defined $minWin || !defined $maxWin) {
-		$threads[$i] = threads->create(sub { `root -l -b -q 'process.c("$data[$i]", $evtNum, "$subId", $refCh, "$endp", -100000, -100000)'`});
+		$threads[$i] = threads->create(sub { `root -l -b -q 'process.c("$data[$i]", $evtNum, "$subId", $refCh, "$endp", -100000, -100000, $quietMode, $fullSetup, $vhrMode)'`});
 	}
 	else {
-		$threads[$i] = threads->create(sub { `root -l -b -q 'process.c("$data[$i]", $evtNum, "$subId", $refCh, "$endp", $minWin, $maxWin)'`});
+		$threads[$i] = threads->create(sub { `root -l -b -q 'process.c("$data[$i]", $evtNum, "$subId", $refCh, "$endp", $minWin, $maxWin, $quietMode, $fullSetup, $vhrMode)'`});
 	}
 }
 
