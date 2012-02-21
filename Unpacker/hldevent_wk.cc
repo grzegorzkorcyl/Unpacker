@@ -161,7 +161,9 @@ Bool_t HldEvent::execute()
 
 	    for (size_t idx = 0; idx < lastSubEvtIdx; idx++)
 		{ // loop unpackers
-		if (subEvt[i].getId() == subEvtTable[idx].id)
+		// gk 09.12.11
+		//if (subEvt[i].getId() == subEvtTable[idx].id)
+		if (kTRUE) 
 		    {
 		    subEvt[i].swapData();
 		    *subEvtTable[idx].p = subEvt + i;
@@ -268,7 +270,6 @@ Int_t HldEvent::appendSubEvtIdx()
 //______________________________________________________________________________
 void HldEvent::clearAll(void)
     {
-    //for (Int_t i = 0; i < 128; i++)
     for (Int_t i = 0; i < fpgasNum * 128; i++)
 	{
 	for (Int_t k = 0; k < kMaxMult; k++)
@@ -281,6 +282,7 @@ void HldEvent::clearAll(void)
 	LeadingMult[i] = 0;
 	WidthMult[i] = 0;
 	TrailingMult[i] = 0;
+	SpikesCtr[i] = 0;
 	}
     errors_per_event = 0;
     }
@@ -288,66 +290,23 @@ void HldEvent::clearAll(void)
 //______________________________________________________________________________
 Bool_t HldEvent::fill_lead(Int_t ch, Int_t time)
     {
-    /*
-     //wk added 02.02.07
-     Int_t trailMult = TrailingMult[ch]; //Trailing Multiplicity
-     Int_t leadMult = LeadingMult[ch]; //Leading Multiplicity
+      
+    Int_t leadMult = LeadingMult[ch];
+    Int_t trailMult = TrailingMult[ch];
+    
+    if(leadMult - trailMult == 0) {
+      LeadingMult[ch]++;
+      if (leadMult < kMaxMult)  {
+	      LeadingTime[ch][leadMult] = time;
+	  }
+      return ((leadMult + 1) <= kMaxMult);
 
-
-     LeadingMult[ch]++;
-
-     if (leadMult < kMaxMult)
-     {
-     if (leadMult <= trailMult + 1)
-     {
-     LeadingTime[ch][leadMult] = time;
-     }
-     else
-     {
-     return kFALSE;
-     }
-     }
-     return ((leadMult + 1) <= kMaxMult);
-     */
-
-    //hk added
-    Int_t widMult = WidthMult[ch]; //width Multiplicity
-    Int_t leadMult = LeadingMult[ch]; //Leading Multiplicity
-
-
-//cerr<<"fill_lead: "<<leadMult<<" on ch "<<ch<<endl;
-
-    LeadingMult[ch]++;
-    if (leadMult < kMaxMult)
-	{
-	//if (leadMult <= widMult + 1)
-	//   {
-	    LeadingTime[ch][leadMult] = time;
-	    /*}
-	else
-	    {
-	    return kFALSE;
-	    }*/
-	}
-    return ((leadMult + 1) <= kMaxMult);
-
-    ///////////////////////////////////////////
-    // Stores the given time in the next data element
-    // and sets the multiplicity.
-    // Return false if kMaxMult hits are already stored.
-    ///////////////////////////////////////////
-
-    /*
-     if( trbLeadingMult[ch]<kMaxMult){
-     trbLeadingTime[ch][trbLeadingMult[ch]]=time;
-     }
-     //wk added
-     cout<< "zwiekszamy multiplicity dla kanalu: "<<ch<<endl;
-     trbLeadingMult[ch]++;
-     cout<< "multiplicity wynosi: "<<trbLeadingMult[ch]<<endl;
-     return(trbLeadingMult[ch]<=kMaxMult);
-     */
-
+    }
+    else {
+      LeadingTime[ch][leadMult - 1] = time;
+      SpikesCtr[ch]++;
+    }
+    
     }
 
 //______________________________________________________________________________
@@ -379,57 +338,26 @@ Bool_t HldEvent::fill_width(Int_t ch, Int_t time)
 Bool_t HldEvent::fill_trail(Int_t ch, Int_t time)
     {
 
-    //wk added 02.02.07
     Int_t trailMult = TrailingMult[ch]; //Trailing Multiplicity
     Int_t leadMult = LeadingMult[ch]; //Leading Multiplicity
 
-    TrailingMult[ch]++;
-
     if (trailMult < kMaxMult)
 	{
-	if (trailMult <= leadMult + 1)
+	if (leadMult - trailMult == 1)
 	    {
-	    TrailingTime[ch][trailMult] = time;
-	    //ADC cannot be set here
+	      TrailingMult[ch]++;
+	      TrailingTime[ch][trailMult] = time;
 	    }
 	else
 	    {
+	      SpikesCtr[ch]++;
+	      
 	    return kFALSE;
 	    }
 	}
 
     return ((trailMult + 1) <= kMaxMult);
-
-    ///////////////////////////////////////////
-    // Calculates the time between trailing and LAST(!) leading hit.
-    // No other check if its really the right one,
-    // i am depending on the TDC to deliver the right order
-    // Return kFALSE if no leading yet or more than kMaxMult Hits
-    ///////////////////////////////////////////
-    /*
-     Int_t m;// Leading Multiplicity
-     m=trbLeadingMult[ch];
-     //wk added
-     cout<< "multiplicity dla kanalu: "<<ch<<"wynosi "<<trbLeadingMult[ch]<<endl;
-     if(m==0) {//wk added
-     cout<<" jestem w fill_trail leading multiplicity =0"<<endl;
-     return kFALSE;
-     }
-
-     if( m<=kMaxMult){
-     if( trbTrailingMult[ch]!=m){
-     trbTrailingTime[ch][m-1]=time;
-     trbADC[ch][m-1] = time - trbLeadingTime[ch][m-1];
-     }else{ //wk added
-     cout <<"Mamy juz to zbocze opadajace ??"<<endl;
-     return kFALSE;// In this case we already have one trailing
-     }
-     }
-     trbTrailingMult[ch]=m;
-
-     return(trbTrailingMult[ch]<=kMaxMult);
-     */
-
+    
     }
 
 //______________________________________________________________________________
@@ -503,23 +431,13 @@ Int_t HldEvent::decode(void)
   uBlockSize = *data & 0xFF;
   nEvtNr = (*data >> 8) & 0xFF;
 
-  // gk 02.12.10
-  // removed this if    
-  //     if (nEvtNr != (UInt_t) pSubEvt->getTrigNr())
-  // 	{
-  // 	/*wk       if(!quietMode){
-  // 	 Error("TRB unpack","TRB EvtNr!=pSubEvt->getTrigNr() ********* Event Mixing *********");
-  // 	 printf("=== %d != %d \n",nEvtNr,(UInt_t)pSubEvt->getTrigNr());
-  // 	 }
-  // 	 */
-  // 	return (kFALSE);
-  // 	}
-
   nSizeCounter++;// First one already processed
   
   
   bool foundLeadingEdge = false;
 
+  bool printDebug = false;
+  
   while (data < end)
   {
     UInt_t dataword;
@@ -530,44 +448,56 @@ Int_t HldEvent::decode(void)
     // gk 20.12.10
     // fpgaAddr is a number used to select the source of data (given fpga) - set in constructor
     //65535
-/*    if((((*data) & 0xffff) != fpgaAddr) && (subeventFound == false)) {
-      data += ((*data) & 0xffff0000) >> 16;
-      data++;
-      continue;
-    }
-    else if((((*data) & 0xffff) == 65535) && (subeventFound == false)) {
-      end = data + (((*data) & 0xffff0000) >> 16) + 1;
-      subeventFound = true;
-      data++;
-      continue;
-    }   */
+    if (fullSetup == true) {
+      if((((*data) & 0xffff) != fpgaAddr) && (subeventFound == false)) {
+	data += ((*data) & 0xffff0000) >> 16;
+	data++;
+	continue;
+      }
+      else if((((*data) & 0xffff) == 65535) && (subeventFound == false)) {
+	end = data + (((*data) & 0xffff0000) >> 16) + 1;
+	subeventFound = true;
+	data++;
+	continue;
+      }   
 
-	//gk find if the subevent is the one from endpoints list, skip others
-	if (subeventFound == false) {
-		currentFpga = -1;
-		// loop over registered endpoint addresses
-		for(int i = 0; i < fpgasNum; i++) {
-		  //cerr<<"FPGA: "<<i<<endl;
-			// found a matching one
-			if (((*data) & 0xffff) == fpgasAddr[i]) {
-				endOfSubevent = data + (((*data) & 0xffff0000) >> 16) + 1;
-				data++;
-				subeventFound = true;
-				currentFpga = i;
-				break;
-			}
-		}
+      // gk 09.12.11
+      //gk find if the subevent is the one from endpoints list, skip others
+      if (subeventFound == false) {
+	      currentFpga = -1;
+	      // loop over registered endpoint addresses
+	      for(int i = 0; i < fpgasNum; i++) {
+		//cerr<<"FPGA: "<<i<<endl;
+		      // found a matching one
+		      if (((*data) & 0xffff) == fpgasAddr[i]) {
+			      endOfSubevent = data + (((*data) & 0xffff0000) >> 16) + 1;
+			      data++;
+			      subeventFound = true;
+			      currentFpga = i;
+			      
+			      if(!quietMode) printf("Subevent found on fpga %d\n", currentFpga);
+			      
+			      break;
+		      }
+	      }
 
-		// if none matches, skip to the next subevent
-		if (currentFpga == -1) {
-			data += (((*data) & 0xffff0000) >> 16) + 1;
-		}
-		continue;
-	}
+	      // if none matches, skip to the next subevent
+	      if (currentFpga == -1) {
+		      data += (((*data) & 0xffff0000) >> 16) + 1;
+	      }
+	      continue;
+      }
 	
+    }
+    // in case of single trb setup
+    else {
+	  
+	  subeventFound = true;
+	  currentFpga = 0;
+    }
 
-	// process data in case subevent is found
-	if (subeventFound == true) {
+    // process data in case subevent is found
+    if (subeventFound == true) {
 
     if(dataword == 0xDEADFACE)
     {
@@ -626,155 +556,106 @@ nCountTDC = 0;
 	
 	if (TdcDataLen != (dataword & 0xFFF))
 	{
-	//wk     if(!quietMode)Error("TRB unpack","TdcDataLen!= length in Trailer!");
 	  if (!quietMode)
 	    printf("TRB unpack: TdcDataLen %d != %d ", TdcDataLen, dataword & 0xFFF);
 	}
 	TdcDataLen = 0;
-	if (nTdcEvtId != ((dataword >> 12) & 0xFFF))
-	{
-	//wk        if(!quietMode)Error("TRB unpack","TDC Header and Trailer have different EventIds");
-	//               exit();
-	//               return(kFALSE);
-	}
 	nCountTDC++;
 	break;
       }
-      /*
-      * pomiar bez pairing mode
-      *
-      case 4:
-      {// TDC DATA Leading
-
-      #if DEBUG_LEVEL>4
-      if(!quietMode)printf("TRB unpack: Found TDC %d Lead Data $%08X\n",TdcId,dataword);
-      #endif
-      Int_t nData, nChannel;
-      nChannel = (dataword >> 19) & 0x1f; // decode channel
-      nChannel += TdcId * 32;
-      nData = dataword & 0x7ffff; // decode 19bit data
-      #if DEBUG_LEVEL>4
-      if(!quietMode)printf("(Chan,Data) %3d, %d\n",nChannel,nData);
-      #endif
-
-      // this is for SINGLE LEADING/TRAILING EDGE measurements only!!!
-      //wk added wypelniane lead
-      if (!fill_lead(nChannel, nData))
-      {
-      //   cout<< "Leading without Trailing or Too many Hits"<<endl;
-      }
-      break;
-      }
-      */
+      
       case 4:
       {// TDC DATA Leading and width
 
 	if(!quietMode)
 	      printf("TRB unpack: Found TDC %d Lead Data $%08X\n",TdcId,dataword);
 	
-	Int_t nData, nChannel, nWidth;
-	nChannel = (dataword >> 19) & 0x1f; // decode channel
-	// shift by tdc number and endpoint number
-//	nChannel += TdcId * 32;
-//cerr<<nChannel<<" "<<TdcId<<" "<<currentFpga<<" ";
-	nChannel += (TdcId * 32) + (currentFpga * 128);
-//	printf("HIT: %d\n", nChannel);
-	
-	//printf("channel %d\n", nChannel);
-	
-// 	if (nChannel == 103) { printf("leading ch 103 $%08X\n", dataword); }
-// 	if (nChannel == 101) { printf("leading ch 101 $%08X\n", dataword); }
-// 	if (nChannel == 102) { printf("leading ch 102 $%08X\n", dataword); }
-// 	if (nChannel == 100) { printf("leading ch 100 $%08X\n", dataword); }
-	
-	/*
-	if (nChannel < 32)
-	{
-
-	nData = dataword & 0x7ff; // decode 12bit leading edge data
-	nWidth = (dataword >> 12) & 0x7f; // decode 7bit width data
-
-
-	// this is for SINGLE LEADING/TRAILING EDGE measurements only!!!
-	//wk added wypelniane lead
-	if (!fill_lead(nChannel, nData))
-	{
-	//   cout<< "Leading without Trailing or Too many Hits"<<endl;
-	}
-	if (!fill_width(nChannel, nWidth))
-	{
-	//   cout<< "Leading without Trailing or Too many Hits"<<endl;
-	}
-	}
-	else
-	{
-	*/
-	
-	//if (nChannel == 351) cerr<<"Found leading edge on ch 351"<<endl;
-	
-	nData = dataword & 0x7ffff; // decode 19bit data
-	// this is for SINGLE LEADING/TRAILING EDGE measurements only!!!
-	//wk added wypelniane lead
-	
-	// gk in case the search window is defined
-	if (nData >= minWindow && nData <= maxWindow && minWindow != -100000) {
-	  if (!fill_lead(nChannel, nData))
-	  {
-	  //   cout<< "Leading without Trailing or Too many Hits"<<endl;
-	  }
-	  foundLeadingEdge = true;
-	}
-	// operate without search window
-	else if(minWindow == -100000) {
+	// gk 13.02.12 added support for VHR mode
+	if(VHR == false) {
+	  Int_t nData, nChannel, nWidth;
+	  nChannel = (dataword >> 19) & 0x1f; // decode channel
 	  
-	  if (!fill_lead(nChannel, nData))
-	  {
-	  //   cout<< "Leading without Trailing or Too many Hits"<<endl;
+	  nChannel += (TdcId * 32) + (currentFpga * 128);
+	  nData = dataword & 0x7ffff; // decode 19bit data
+	  
+	  if(!quietMode)
+	    printf("(Chan,Data) %3d, %d\n",nChannel,nData);
+	  
+	  // gk in case the search window is defined
+	  if (nData >= minWindow && nData <= maxWindow && minWindow != -100000) {
+	    fill_lead(nChannel, nData);
+	    //foundLeadingEdge = true;
 	  }
-	  foundLeadingEdge = true;
+	  // operate without search window
+	  else if(minWindow == -100000) {
+	    fill_lead(nChannel, nData);
+	    //foundLeadingEdge = true;
+	  }
+	}
+	else {  // VHR decoding
+	  Int_t nData, nChannel, nTDC;
+	  nChannel  = (dataword >> 21) & 0x7;
+	  nTDC      = (dataword >> 24) & 0xf;
+	  nChannel += (nTDC * 32) + (currentFpga * 128);
+	  nData     = ((dataword & 0x7ffff) << 2) | ((dataword >> 19) & 0x3);
+	  
+	  if (!quietMode)
+	    printf("VHR(Chan,Data) %3d, %d\n",nChannel,nData);
+	    
+	  fill_lead(nChannel, nData);
+	  //foundLeadingEdge = true;
 	}
 	//}
 	break;
       }
       case 5:
       {// TDC DATA Trailing
-	if(!quietMode)
-	  printf("TRB unpack: Found TDC %d Trail Data $%08X\n",TdcId,dataword);
+      
+        if(!quietMode)
+	    printf("TRB unpack: Found TDC %d Trail Data $%08X\n",TdcId,dataword);   if(!quietMode) printf("FPGA code: %s amount: %d\n", fpgaAddr, fpgasNum);
 	
-	Int_t nData, nChannel;
-	nChannel = (dataword >> 19) & 0x1f; // decode channel
+	// gk 13.02.12 added support for VHR mode
+	if (VHR == false) {
+	  Int_t nData, nChannel;
+	  nChannel = (dataword >> 19) & 0x1f; // decode channel
 
-	//shift by tdc number and endpoint number
-	// nChannel += TdcId * 32;
-	nChannel += (TdcId * 32) + (currentFpga * 128);
-//	printf("HIT: %d\n", nChannel);
-	
-		//printf("channel %d\n", nChannel);
-	
-// 	if (nChannel == 103) { printf("trailing ch 103 $%08X\n", dataword); }
-// 	if (nChannel == 101) { printf("trailing ch 101 $%08X\n", dataword); }
-// 	if (nChannel == 102) { printf("trailing ch 102 $%08X\n", dataword); }
-// 	if (nChannel == 100) { printf("trailing ch 100 $%08X\n", dataword); }
-	
-	
-	nData = dataword & 0x7ffff; // decode 19bit data
-	
-	if(!quietMode)
-	  printf("(Chan,Data) %3d, %d\n",nChannel,nData);
-	
-	// this is for SINGLE LEADING/TRAILING EDGE measurements only!!!
-	if (foundLeadingEdge == true) {
-	  if (!fill_trail(nChannel, nData))
-	  {
-
-	  //	cout <<"Trailing without Leading or Too many Hits"<<endl;
-	  }
-	  foundLeadingEdge = false;
+	  //shift by tdc number and endpoint number
+	  nChannel += (TdcId * 32) + (currentFpga * 128);
+	  
+	  nData = dataword & 0x7ffff; // decode 19bit data
+	  
+	  if(!quietMode)
+	    printf("(Chan,Data) %3d, %d\n",nChannel,nData);
+	  
+	  // this is for SINGLE LEADING/TRAILING EDGE measurements only!!!
+	  //if (foundLeadingEdge == true) {
+	    fill_trail(nChannel, nData);
+	  //  foundLeadingEdge = false;
+	  //} else {
+	  // if(!quietMode) printf("!!!Rejecting that trail edge \n");
+	  //}
+	}
+	else {
+	  Int_t nData, nChannel, nTDC;
+	  nChannel  = (dataword >> 21) & 0x7;
+	  nTDC      = (dataword >> 24) & 0xf;
+	  nChannel += (nTDC * 32) + (currentFpga * 128);
+	  nData     = ((dataword & 0x7ffff) << 2) | ((dataword >> 19) & 0x3);
+	  
+	  if (!quietMode)
+	    printf("VHR(Chan,Data) %3d, %d\n",nChannel,nData);
+	    
+	  fill_trail(nChannel, nData);
+	  //foundLeadingEdge = false;
 	}
 	break;
       }
       case 6:
       {// TDC ERROR
+      
+      
+	printDebug = true;
+      
 	incErrorNr();
 	if ((dataword & 0x7FFF) == 0x1000)
 	{// special case for non fatal errors
@@ -819,27 +700,35 @@ nCountTDC = 0;
 	}
 
   }
-
-/*  if (nCountTDC != 4)
-  {
-    if (nCountTDC < 4)
-    {
-    #warning "Comment this in after may06 beamtime"
-    //         Error("TRB unpack","TDC count <4 -> TDC data missing!!!");
-    }
-    else
-    {
-    //wk    if(!quietMode)Error("TRB unpack","TDC count >4 -> additional TDC data!!!");
-    }
-  }
-  if (uBlockSize != nSizeCounter)
-  {
-  //wk   if(!quietMode)Error("TRB unpack","Blocksize!=Counted words!!!");
-  }*/
   
   if(!quietMode)printf("==== Unpacker end (%d)\n",subEvtId);
   
-
+  
+  //if (LeadingMult[31] == 0 || LeadingMult[63] == 0 || LeadingMult[95] == 0 || LeadingMult[127] == 0) {
+  if(LeadingMult[31] != TrailingMult[31] || LeadingMult[63] != TrailingMult[63] || LeadingMult[95] != TrailingMult[95]) {
+      if(!quietMode) printf("%d, %d, %d, %d, %d, %d \n", LeadingMult[31], TrailingMult[31], LeadingMult[63], TrailingMult[63], LeadingMult[95],  TrailingMult[95]);
+      printDebug = true;
+  }
+  
+  
+  if(!quietMode && printDebug == true) {
+    data = pSubEvt->getData();
+    UInt_t *start = data;
+    while (data < end)
+    {
+      UInt_t dataword;
+      dataword = *data;
+      
+      printf("%08x\t", dataword);
+      
+      if (((data - start) % 4 == 3) && (data != start)) printf("\n");
+      
+      data++;
+    }
+    
+    printf("\n============================ END OF EVENT ======================================\n\n");
+  }
+  
   return (kTRUE);
 }
 
@@ -905,6 +794,15 @@ Int_t HldEvent::getTrailingMult(Int_t channel) const
 
     if (channel < kMaxChannelNr)
 	return TrailingMult[channel];
+    return -1; //channel out of range
+    }
+    
+Int_t HldEvent::getSpikesCtr(Int_t channel) const
+//______________________________________________________________________________
+    {
+
+    if (channel < kMaxChannelNr)
+	return SpikesCtr[channel];
     return -1; //channel out of range
     }
 //end

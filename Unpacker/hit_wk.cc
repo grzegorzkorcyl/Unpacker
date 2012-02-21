@@ -34,15 +34,17 @@ void Hit::clear()
 //  width3=0;
 //  time4=0;
 //  width4=0;
- width_wk=0;
- trailTime1=0;
- leadTime1=0;
- trailTime2=0;
- leadTime2=0;
- trailTime3=0;
- leadTime3=0;
- trailTime4=0;
- leadTime4=0;
+ width_wk=-100000;
+ trailTime1=-100000;
+ leadTime1=-100000;
+ trailTime2=-100000;
+ leadTime2=-100000;
+ trailTime3=-100000;
+ leadTime3=-100000;
+ trailTime4=-100000;
+ leadTime4=-100000;
+ 
+ spikesCtr=0;
 }
 
 //wk from HHodoRaw

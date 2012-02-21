@@ -232,7 +232,7 @@ Bool_t Event::fill(const HldEvent& HldEvt)
 	  break;
 	}
      }
-     cerr<<"Found multihit on reference channel, selecting hit "<<mults[getReferenceChannel() / 128]<<endl;
+     //     cerr<<"Found multihit on reference channel, selecting hit "<<mults[getReferenceChannel() / 128]<<endl;
      setReferenceTime(HldEvt.getLeadingTime(getReferenceChannel(), mults[getReferenceChannel() / 128]));
     }
     else {

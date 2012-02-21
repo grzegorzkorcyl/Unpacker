@@ -46,7 +46,7 @@ public:
    file = 0;
    isWritable=kFALSE;
    fpgaAddr=0;
-   setQuietMode();
+//   setQuietMode();
    setSubEvtId();
    init();
  }
@@ -61,7 +61,6 @@ UInt_t HexStrToInt(const char* str) {
  }
 
  // gk change to accept multiple fpga_codes
- //HldEvent(const char* name,Int_t subId,UInt4 fpgaAddr): pData(0) {    // read from file
  HldEvent(const char* name,Int_t subId, const char* fpgaAddr): pData(0) {    // read from file
    file = 0;	//wk added 25.05.07
    fpgasNum = 0;
@@ -87,11 +86,12 @@ UInt_t HexStrToInt(const char* str) {
      }
    }
    
+   if(!quietMode) printf("FPGA code: %s amount: %d\n", fpgaAddr, fpgasNum);
+   
    minWindow = -100000;
    maxWindow = -100000;
    
    setFile(name);
-   setQuietMode();
    setSubEvtId(subId);
    init();
  }
@@ -122,11 +122,12 @@ UInt_t HexStrToInt(const char* str) {
      }
    }
    
+   if(!quietMode) printf("FPGA code: %s amount: %d\n", fpgaAddr, fpgasNum);
+   
    minWindow = min;
    maxWindow = max;
    
    setFile(name);
-   setQuietMode();
    setSubEvtId(subId);
    init();
  }
@@ -248,13 +249,15 @@ public:
   Int_t WidthMult[kMaxChannelNr];
   Int_t TrailingMult[kMaxChannelNr];
   Int_t errors_per_event;          // number of errors per event
+  Int_t SpikesCtr[kMaxChannelNr];
 
   Int_t debugFlag;  // allows to print subevent information
                     // to the STDOUT
   Int_t debugFlag1; // used for special purpuses
                     // will be removed later
   Bool_t quietMode; //! do not print errors!
-  
+  Bool_t fullSetup;
+  Bool_t VHR;
   //gk
   Int_t minWindow;
   Int_t maxWindow;
@@ -266,12 +269,16 @@ public:
  Int_t getWidthTime(Int_t channel,Int_t mult) const;
  Int_t getLeadingMult(Int_t channel) const;
  Int_t getTrailingMult(Int_t channel) const;
+ Int_t getSpikesCtr(Int_t channel) const;
+ 
   
   Int_t getSubEvtId(void) const { return subEvtId; }
   Int_t decode(void);
   void clearAll(void);
   //void setQuietMode(void){quietMode=kTRUE;}kFALSE
-void setQuietMode(void){quietMode=kTRUE;}
+void setQuietMode(bool t) { quietMode=t; }
+void setFullSetup(bool t) { fullSetup = t; }
+void setVHR(bool t) { VHR = t; }
   void setDebugFlag(Int_t db){ debugFlag = db;};
   void setDebugFlag1(Int_t db){ debugFlag1 = db;};
 

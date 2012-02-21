@@ -69,6 +69,7 @@ class Hit:public TObject
  Int_t trailTime3;  
  Int_t leadTime4;    
  Int_t trailTime4;
+ Int_t spikesCtr;
  
  public:
  
@@ -99,6 +100,8 @@ class Hit:public TObject
  void setLeadTime4(Int_t t) { leadTime4=t; } 
  void setTrailTime4(Int_t t) { trailTime4=t; } 
  
+ void setSpikesCtr(Int_t t) { spikesCtr=t; } 
+ 
  Int_t getChannel() { return channel;}
  Int_t getTDC() { return TDC;}
  Int_t getNHits() { return nHits; }
@@ -123,6 +126,7 @@ class Hit:public TObject
  Int_t getTrailTime3() { return trailTime3; } 
  Int_t getLeadTime4() { return leadTime4; } 
  Int_t getTrailTime4() { return trailTime4; } 
+ Int_t getSpikesCtr() { return spikesCtr; } 
  
  //wk from HHodoRaw
  Int_t getTime(const Int_t n) const;

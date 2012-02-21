@@ -79,7 +79,7 @@ Unpacker::Unpacker()
 // 
 // }
 
-Unpacker::Unpacker(const char* name,Int_t nEvt, const char* subEvtId, Int_t refChannel, const char* fpga_code, Int_t min, Int_t max)
+Unpacker::Unpacker(const char* name,Int_t nEvt, const char* subEvtId, Int_t refChannel, const char* fpga_code, Int_t min, Int_t max, Int_t quietMode, Int_t fullSetup, Int_t VHR)
 {
   refCh = -1;
   refCh = refChannel;
@@ -87,6 +87,28 @@ Unpacker::Unpacker(const char* name,Int_t nEvt, const char* subEvtId, Int_t refC
   setInputFile(name);
   EventNr=0;
   pEvent= new HldEvent(inputFile.c_str(), HexStrToInt(subEvtId), fpga_code, min, max); 
+  
+  if (quietMode == 1) {
+    pEvent->setQuietMode(true);
+  }
+  else if(quietMode == 0) {
+    pEvent->setQuietMode(false);
+  }
+  
+  if (fullSetup == 1) {
+    pEvent->setFullSetup(true);
+  }
+  else if(fullSetup == 0) {
+    pEvent->setFullSetup(false);
+  }
+  
+  if(VHR == 1) {
+   pEvent->setVHR(true); 
+  }
+  else if(VHR == 0) {
+   pEvent->setVHR(false); 
+  }
+  
   pRootFile=0;
 //  this->fpga_code=fpga_code;
  if(nEvt>0)
@@ -147,51 +169,6 @@ Bool_t Unpacker::setpEvent(Int_t Id)
 	
 }
 
-
-/*wk: from hldfilesource*/
-/*
-EDsState Unpacker::getNextEvent(Bool_t doUnpack) {
-  // loops over the event files in the runtime database
-  // Tries to read a new event from the LMD file and put the info into the
-  // HEvent structure:
-
-  if(isDumped) {
-    if (dumpEvt()==kDsError) {
-      if (getNextFile()==kFALSE) return kDsEndData;
-      else return kDsEndFile;
-    }
-    return kDsOk;
-  }
-
-  if (isScanned) {
-    if (scanEvt()==kDsError) {
-      if (getNextFile()==kFALSE) return kDsEndData;
-      else return kDsEndFile;
-    }
-    return kDsOk;
-  }
-
-  fEventNr++;
-
-  if ( !((HldFilEvt*)fReadEvent)->execute() || !(fEventNr<fEventLimit)) {
-    //End of current file
-    fEventNr = 0;
-    if (getNextFile()==kFALSE) return kDsEndData;
-    else return kDsEndFile;
-  }
-
-  if(doUnpack){
-    decodeHeader((*fEventAddr)->getHeader());
-    iter->Reset();
-    HldUnpack *unpacker;
-    while ( (unpacker=(HldUnpack *)iter->Next())!=NULL) {
-      if (!unpacker->execute()) return kDsError;
-    }
-  }
-  return kDsOk;
-}
-*/
-
 //______________________________________________________________________________
 Bool_t Unpacker::eventLoop(Int_t nbEvt,Int_t startEv)
 //Loop over all events, data written to the root tree
@@ -209,16 +186,13 @@ Bool_t Unpacker::eventLoop(Int_t nbEvt,Int_t startEv)
 	 strcpy(t, (inputFile + ".root").c_str());
          setRootFile(t);
       }
-//  TFile hfile("Event.root","RECREATE");
       TTree *tree = new TTree("T","An example of a ROOT tree");
       tree->SetAutoSave(1000000000); //autosave when 1 GB written
       Event* event=0;
       Int_t split = 2;
       Int_t bsize = 64000;
       cout<< "We create the tree"<<endl;
-      tree->Branch("event","Event", &event, bsize,split);
-// if(tree->GetBranchStatus("event")==kTRUE)	cout<<"aktywny"<<endl;
-//  cout<<"to zwraca Branch(): "<<test<<endl;	  
+      tree->Branch("event","Event", &event, bsize,split);  
 
       for(Int_t i=0; i< nbEvt; i++)
       {    
@@ -229,25 +203,15 @@ Bool_t Unpacker::eventLoop(Int_t nbEvt,Int_t startEv)
 	    cout<<"Number of Events: "<<EventNr<<endl;
 	    break;
          }
-	 //cerr<<"Un ref ch: "<<refCh<<endl;
          event= new Event(*pEvent, refCh);
-	 //event->setReferenceChannel(refCh);
-	 //cerr<<"Un get ref ch: "<<event->getReferenceChannel()<<endl;
 	 
-	 //cerr<<event->getReferenceChannel()<<" | "<<refCh<<endl;
-         //cout<<"Event number: "<<i <<endl;   
-   //cout<<"Leading time: "<<event->trbLeadingTime[3][0]<<endl;
-   //cout<<"Trailing time: "<<event->trbTrailingTime[3][0]<<endl;
-   
-  //  cout<<"Reference Time" << event->getReferenceTime()<<endl;
          tree->Fill();   
          delete event;
          EventNr++;
       }
- //else return kFALSE;
+      
       pRootFile->Write();
- //wk 28.05 hfile.Write();
- //hfile.Close();
+      
       delete tree;
       return kTRUE;
    }
