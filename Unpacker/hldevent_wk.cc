@@ -445,29 +445,16 @@ Int_t HldEvent::decode(void)
     nSizeCounter++;
     UInt_t* endOfSubevent;
     
-    // gk 20.12.10
-    // fpgaAddr is a number used to select the source of data (given fpga) - set in constructor
-    //65535
-    if (fullSetup == true) {
-      if((((*data) & 0xffff) != fpgaAddr) && (subeventFound == false)) {
-	data += ((*data) & 0xffff0000) >> 16;
-	data++;
-	continue;
-      }
-      else if((((*data) & 0xffff) == 65535) && (subeventFound == false)) {
-	end = data + (((*data) & 0xffff0000) >> 16) + 1;
-	subeventFound = true;
-	data++;
-	continue;
-      }   
 
+    
+    if (fullSetup == true) {
       // gk 09.12.11
       //gk find if the subevent is the one from endpoints list, skip others
       if (subeventFound == false) {
 	      currentFpga = -1;
 	      // loop over registered endpoint addresses
 	      for(int i = 0; i < fpgasNum; i++) {
-		//cerr<<"FPGA: "<<i<<endl;
+		//cerr<<"FPGA: "<<i<<" "<<fpgasAddr[i]<<endl;
 		      // found a matching one
 		      if (((*data) & 0xffff) == fpgasAddr[i]) {
 			      endOfSubevent = data + (((*data) & 0xffff0000) >> 16) + 1;
@@ -491,6 +478,23 @@ Int_t HldEvent::decode(void)
     }
     // in case of single trb setup
     else {
+      
+      
+    // gk 20.12.10
+    // fpgaAddr is a number used to select the source of data (given fpga) - set in constructor
+    //65535
+    
+      if((((*data) & 0xffff) != fpgaAddr) && (subeventFound == false)) {
+	data += ((*data) & 0xffff0000) >> 16;
+	data++;
+	continue;
+      }
+      else if((((*data) & 0xffff) == 65535) && (subeventFound == false)) {
+	end = data + (((*data) & 0xffff0000) >> 16) + 1;
+	subeventFound = true;
+	data++;
+	continue;
+      }   
 	  
 	  subeventFound = true;
 	  currentFpga = 0;
