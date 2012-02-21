@@ -9,16 +9,19 @@ process.pl
 The script to run Unpacker in batch mode for a predefined list of .hld files
 Generates .root files in the same place where .hld are
 Create a text file with .hld files list, one file with full path per line
-run: perl process.pl A B C D E
+run: perl process.pl A B C D E F G H
 where:
 A - file with list of .hld files
 B - max number of event to process
 C - address of the HUB Addon to which TRBs are connected
 D - number of the reference channel
 E - list of TRB addresses in format "abcd|0123|6789"
+F - quietMode, set to 1 for no debug output, set to 0 for printing out the debug infos
+G - full/signle trb setup, set to 1 for normal Hades HW setup, set to 0 for single TRB setup
+H - VHR mode, set to 0 for normal resolution modes, set to 1 for VHR mode
 
 example:
-perl process.pl files.txt 1000 "8000" 95 "1234|3200"
+perl process.pl files.txt 1000 "8000" 95 "1234|3200" 1 1 1
 
-It will process 1000 events from all files listed in files.txt, looking for subevents coming from HUB board with address 0x8000 for specific TRBs with addresses 0x1234 and 0x3200 with reference channel number set to 95
+It will process 1000 events from all files listed in files.txt, looking for subevents coming from HUB board with address 0x8000 for specific TRBs with addresses 0x1234 and 0x3200 with reference channel number set to 95, withut printing debug information, treating the data as for full Hades hardware setup, set to very high resiolution mode
 
